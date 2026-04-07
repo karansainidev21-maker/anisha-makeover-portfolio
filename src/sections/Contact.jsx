@@ -74,7 +74,7 @@ const Contact = () => {
                                 className="bg-dark text-white px-10 py-4 rounded-full font-black text-[12px] tracking-widest inline-flex items-center gap-3 shadow-xl hover:shadow-dark/40 transition-all duration-300"
                             >
                                 INSTAGRAM
-                            </motion.a>
+                            </motion.a> 
                         </div>
                     </motion.div>
 
