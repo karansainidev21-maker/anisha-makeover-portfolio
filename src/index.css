@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #fdf2f8; /* Soft Pink */
+  --color-secondary: #f5ebe0; /* Nude */
+  --color-accent: #c5a059; /* Gold */
+  --color-dark: #2d2424; /* Deep brown/dark */
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Montserrat", sans-serif;
+}
+
+:root {
+  background-color: #ffffff;
+  color: #2d2424;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background: var(--color-primary);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+}
