@@ -34,7 +34,7 @@ const Footer = () => {
                         </div>
                         <div className="flex gap-6">
                             {[
-                                { name: "INSTAGRAM", url: "https://instagram.com/beauticion_nisha" },
+                                { name: "INSTAGRAM", url: "https://instagram.com/anishamakeover0.1" },
                                 { name: "WHATSAPP", url: "https://wa.me/918954386375" }
                             ].map((social, index) => (
                                 <motion.a 

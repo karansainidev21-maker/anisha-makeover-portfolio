@@ -68,7 +68,7 @@ const Contact = () => {
                                 WHATSAPP US
                             </motion.a>
                             <motion.a 
-                                href="https://instagram.com/beauticion_nisha" 
+                                href="https://instagram.com/anishamakeover0.1" 
                                 target="_blank"
                                 whileHover={{ y: -5 }}
                                 className="bg-dark text-white px-10 py-4 rounded-full font-black text-[12px] tracking-widest inline-flex items-center gap-3 shadow-xl hover:shadow-dark/40 transition-all duration-300"
@@ -89,15 +89,15 @@ const Contact = () => {
                         <form onSubmit={handleFormSubmit} className="space-y-8 font-sans mt-10">
                             <div className="space-y-3">
                                 <label className="text-[10px] font-black tracking-widest text-dark/40 uppercase px-2">FULL NAME</label>
-                                <input type="text" name="name" placeholder="Nisha Saini" className="w-full bg-white/50 backdrop-blur-md px-8 py-5 rounded-[2rem] border border-white focus:outline-none focus:border-accent focus:bg-white transition-all text-dark font-bold placeholder:text-dark/20" required />
+                                <input type="text" name="name" placeholder="Enter your name" className="w-full bg-white/50 backdrop-blur-md px-8 py-5 rounded-[2rem] border border-white focus:outline-none focus:border-accent focus:bg-white transition-all text-dark font-bold placeholder:text-dark/20" required />
                             </div>
                             <div className="space-y-3">
                                 <label className="text-[10px] font-black tracking-widest text-dark/40 uppercase px-2">CONTACT NUMBER</label>
-                                <input type="tel" name="phone" placeholder="+91 00000 00000" className="w-full bg-white/50 backdrop-blur-md px-8 py-5 rounded-[2rem] border border-white focus:outline-none focus:border-accent focus:bg-white transition-all text-dark font-bold placeholder:text-dark/20" required />
+                                <input type="tel" name="phone" placeholder="Enter your phone number" className="w-full bg-white/50 backdrop-blur-md px-8 py-5 rounded-[2rem] border border-white focus:outline-none focus:border-accent focus:bg-white transition-all text-dark font-bold placeholder:text-dark/20" required />
                             </div>
                             <div className="space-y-3">
                                 <label className="text-[10px] font-black tracking-widest text-dark/40 uppercase px-2">YOUR MESSAGE</label>
-                                <textarea name="message" rows="3" placeholder="Tell us about your event..." className="w-full bg-white/50 backdrop-blur-md px-8 py-5 rounded-[2rem] border border-white focus:outline-none focus:border-accent focus:bg-white transition-all text-dark font-bold placeholder:text-dark/20" required></textarea>
+                                <textarea name="message" rows="3" placeholder="Enter your message" className="w-full bg-white/50 backdrop-blur-md px-8 py-5 rounded-[2rem] border border-white focus:outline-none focus:border-accent focus:bg-white transition-all text-dark font-bold placeholder:text-dark/20" required></textarea>
                             </div>
                             <motion.button 
                                 whileHover={{ scale: 1.02 }}
