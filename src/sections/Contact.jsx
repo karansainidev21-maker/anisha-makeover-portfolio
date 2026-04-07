@@ -68,7 +68,7 @@ const Contact = () => {
                                 WHATSAPP US
                             </motion.a>
                             <motion.a 
-                                href="https://instagram.com/anishamakeover0.1" 
+                                href="https://instagram.com/anishamakeover0.1"  
                                 target="_blank"
                                 whileHover={{ y: -5 }}
                                 className="bg-dark text-white px-10 py-4 rounded-full font-black text-[12px] tracking-widest inline-flex items-center gap-3 shadow-xl hover:shadow-dark/40 transition-all duration-300"
