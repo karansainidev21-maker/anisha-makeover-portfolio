@@ -91,56 +91,88 @@ const Navbar = () => {
                 </div>
             </motion.header>
 
-            {/* Mobile Menu Drawer */}
+            {/* Full-Screen Luxury Mobile Menu */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[60] bg-dark/20 backdrop-blur-xl lg:hidden flex flex-col justify-center items-center p-8"
+                        initial={{ x: '100%' }}
+                        animate={{ x: 0 }}
+                        exit={{ x: '100%' }}
+                        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                        className="fixed inset-0 z-[60] bg-dark lg:hidden flex flex-col p-10 md:p-14 overflow-hidden"
                     >
-                        <motion.div
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.8, opacity: 0 }}
-                            className="bg-white w-full max-w-sm rounded-[40px] p-10 shadow-2xl relative"
-                        >
+                        {/* Decorative Background Elements */}
+                        <div className="absolute -top-20 -left-20 w-80 h-80 bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
+                        <div className="absolute bottom-[-10%] right-[-10%] text-white/[0.03] font-serif font-black text-[20rem] leading-none pointer-events-none select-none">
+                            AS
+                        </div>
+
+                        {/* Top Header in Menu */}
+                        <div className="flex justify-between items-center mb-20 relative z-10">
+                            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-dark text-[10px] font-bold">AS</div>
                             <button
                                 onClick={() => setIsOpen(false)}
-                                className="absolute top-6 right-8 text-dark/40 font-bold tracking-widest text-[10px]"
+                                className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group"
                             >
-                                CLOSE [ESC]
+                                <div className="w-6 h-6 relative flex items-center justify-center">
+                                    <span className="absolute w-full h-[1px] bg-white rotate-45" />
+                                    <span className="absolute w-full h-[1px] bg-white -rotate-45" />
+                                </div>
                             </button>
+                        </div>
 
-                            <div className="flex flex-col gap-8 text-center mt-6">
-                                {navLinks.map((link, idx) => (
+                        {/* Staggered Navigation Links */}
+                        <nav className="flex flex-col gap-8 md:gap-12 relative z-10">
+                            {navLinks.map((link, idx) => (
+                                <motion.div
+                                    key={link.name}
+                                    initial={{ opacity: 0, x: 50 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 0.2 + idx * 0.1, duration: 0.8, ease: "easeOut" }}
+                                >
                                     <Link
-                                        key={link.name}
                                         to={link.href}
                                         onClick={() => setIsOpen(false)}
-                                        className="text-3xl font-serif font-black text-dark hover:text-accent transition-all group overflow-hidden"
+                                        className="text-5xl md:text-7xl font-serif font-black text-white hover:text-accent transition-all inline-block group"
                                     >
-                                        <motion.span
-                                            whileHover={{ y: -5 }}
-                                            className="block"
-                                        >
+                                        <span className="inline-block group-hover:translate-x-4 transition-transform duration-500">
                                             {link.name}
-                                        </motion.span>
+                                        </span>
                                     </Link>
-                                ))}
-                                <Link
-                                    to="/#contact"
-                                    onClick={() => setIsOpen(false)}
-                                    className="mt-6 bg-accent text-white py-5 rounded-3xl font-bold tracking-[0.2em] text-sm shadow-xl hover:shadow-accent/40 shadow-accent/20 transition-all text-center"
-                                >
-                                    BOOK APPOINTMENT
-                                </Link>
-                            </div>
+                                </motion.div>
+                            ))}
+                        </nav>
 
-                            <div className="mt-12 text-center border-t border-pink-50 pt-8">
-                                <p className="text-accent font-bold text-[10px] tracking-widest mb-2 uppercase">Official Number</p>
-                                <p className="text-dark font-black tracking-widest">+91 89543 86375</p>
+                        {/* Menu Footer */}
+                        <motion.div 
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.8, duration: 1 }}
+                            className="mt-auto relative z-10"
+                        >
+                            <div className="grid grid-cols-2 gap-10 pt-10 border-t border-white/10">
+                                <div>
+                                    <p className="text-accent font-black text-[10px] tracking-[0.4em] uppercase mb-4">CONNECT</p>
+                                    <div className="flex flex-col gap-2">
+                                        <a href="https://instagram.com/anishamakeover0.1" target="_blank" className="text-white/60 hover:text-white transition-colors text-sm font-bold tracking-widest uppercase">Instagram</a>
+                                        <a href="https://wa.me/918954386375" target="_blank" className="text-white/60 hover:text-white transition-colors text-sm font-bold tracking-widest uppercase">WhatsApp</a>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p className="text-accent font-black text-[10px] tracking-[0.4em] uppercase mb-4">EXPERIENCE</p>
+                                    <Link 
+                                        to="/#contact" 
+                                        onClick={() => setIsOpen(false)}
+                                        className="text-white/60 hover:text-white transition-colors text-sm font-bold tracking-widest uppercase"
+                                    >
+                                        Book Now
+                                    </Link>
+                                </div>
+                            </div>
+                            
+                            <div className="mt-12 flex justify-between items-center text-white/20 text-[9px] font-black tracking-[0.5em] uppercase">
+                                <span>© 2026 ANISHA MAKEOVER</span>
+                                <span>EST. 2024</span>
                             </div>
                         </motion.div>
                     </motion.div>

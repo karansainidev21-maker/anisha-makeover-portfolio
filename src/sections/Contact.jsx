@@ -114,34 +114,91 @@ const Contact = () => {
                     </motion.div>
 
                     <motion.div 
-                        initial={{ opacity: 0, scale: 0.9 }}
+                        initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                         viewport={{ once: true }}
-                        className="bg-secondary/10 backdrop-blur-3xl p-12 md:p-16 rounded-[3rem] border border-white/40 shadow-2xl relative"
+                        className="bg-white/40 backdrop-blur-3xl p-10 md:p-14 rounded-[3.5rem] border border-accent/20 shadow-[0_40px_100px_-20px_rgba(197,160,89,0.1)] relative overflow-hidden"
                     >
-                        <div className="absolute top-8 left-10 text-accent font-black text-[10px] tracking-[0.3em] uppercase">DIRECT MESSAGE</div>
-                        <form onSubmit={handleFormSubmit} className="space-y-8 font-sans mt-10">
-                            <div className="space-y-3">
-                                <label className="text-[10px] font-black tracking-widest text-dark/40 uppercase px-2">FULL NAME</label>
-                                <input type="text" name="name" placeholder="Enter your name" className="w-full bg-white/50 backdrop-blur-md px-8 py-5 rounded-[2rem] border border-white focus:outline-none focus:border-accent focus:bg-white transition-all text-dark font-bold placeholder:text-dark/20" required />
+                        {/* Decorative background element */}
+                        <div className="absolute -top-20 -right-20 w-40 h-40 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
+                        
+                        <div className="relative mb-12">
+                            <span className="text-accent font-black text-[9px] tracking-[0.5em] uppercase block mb-3">DIRECT MESSAGE</span>
+                            <h3 className="text-3xl font-serif font-black text-dark tracking-tighter">Connect with <span className="text-accent italic">Anisha Makeover</span></h3>
+                        </div>
+
+                        <form onSubmit={handleFormSubmit} className="space-y-10">
+                            {/* Input Field - Full Name */}
+                            <div className="group relative">
+                                <label className="absolute -top-3 left-6 px-3 bg-white/80 backdrop-blur-sm text-[9px] font-black tracking-widest text-accent z-10 rounded-full border border-accent/10">FULL NAME</label>
+                                <div className="relative flex items-center">
+                                    <span className="absolute left-6 text-accent/40 group-focus-within:text-accent transition-colors duration-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                        </svg>
+                                    </span>
+                                    <input 
+                                        type="text" 
+                                        name="name" 
+                                        placeholder="Enter your name" 
+                                        className="w-full bg-white/60 hover:bg-white/80 focus:bg-white px-16 py-6 rounded-3xl border border-accent/5 focus:border-accent transition-all duration-500 text-dark font-bold placeholder:text-dark/10 outline-none shadow-sm focus:shadow-xl focus:shadow-accent/5" 
+                                        required 
+                                    />
+                                </div>
                             </div>
-                            <div className="space-y-3">
-                                <label className="text-[10px] font-black tracking-widest text-dark/40 uppercase px-2">CONTACT NUMBER</label>
-                                <input type="tel" name="phone" placeholder="Enter your phone number" className="w-full bg-white/50 backdrop-blur-md px-8 py-5 rounded-[2rem] border border-white focus:outline-none focus:border-accent focus:bg-white transition-all text-dark font-bold placeholder:text-dark/20" required />
+
+                            {/* Input Field - Phone */}
+                            <div className="group relative">
+                                <label className="absolute -top-3 left-6 px-3 bg-white/80 backdrop-blur-sm text-[9px] font-black tracking-widest text-accent z-10 rounded-full border border-accent/10">CONTACT NUMBER</label>
+                                <div className="relative flex items-center">
+                                    <span className="absolute left-6 text-accent/40 group-focus-within:text-accent transition-colors duration-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                        </svg>
+                                    </span>
+                                    <input 
+                                        type="tel" 
+                                        name="phone" 
+                                        placeholder="Enter your phone number" 
+                                        className="w-full bg-white/60 hover:bg-white/80 focus:bg-white px-16 py-6 rounded-3xl border border-accent/5 focus:border-accent transition-all duration-500 text-dark font-bold placeholder:text-dark/10 outline-none shadow-sm focus:shadow-xl focus:shadow-accent/5" 
+                                        required 
+                                    />
+                                </div>
                             </div>
-                            <div className="space-y-3">
-                                <label className="text-[10px] font-black tracking-widest text-dark/40 uppercase px-2">YOUR MESSAGE</label>
-                                <textarea name="message" rows="3" placeholder="Enter your message" className="w-full bg-white/50 backdrop-blur-md px-8 py-5 rounded-[2rem] border border-white focus:outline-none focus:border-accent focus:bg-white transition-all text-dark font-bold placeholder:text-dark/20" required></textarea>
+
+                            {/* Input Field - Message */}
+                            <div className="group relative">
+                                <label className="absolute -top-3 left-6 px-3 bg-white/80 backdrop-blur-sm text-[9px] font-black tracking-widest text-accent z-10 rounded-full border border-accent/10">YOUR MESSAGE</label>
+                                <div className="relative">
+                                    <span className="absolute left-6 top-6 text-accent/40 group-focus-within:text-accent transition-colors duration-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                                        </svg>
+                                    </span>
+                                    <textarea 
+                                        name="message" 
+                                        rows="4" 
+                                        placeholder="Enter your message" 
+                                        className="w-full bg-white/60 hover:bg-white/80 focus:bg-white px-16 py-6 rounded-3xl border border-accent/5 focus:border-accent transition-all duration-500 text-dark font-bold placeholder:text-dark/10 outline-none shadow-sm focus:shadow-xl focus:shadow-accent/5 resize-none" 
+                                        required
+                                    ></textarea>
+                                </div>
                             </div>
+
                             <motion.button 
-                                whileHover={{ scale: 1.02 }}
+                                whileHover={{ scale: 1.02, backgroundColor: "#000" }}
                                 whileTap={{ scale: 0.98 }}
                                 type="submit" 
-                                className="w-full bg-accent text-white py-6 rounded-[2rem] font-black tracking-[0.2em] text-sm shadow-xl shadow-accent/20 hover:shadow-accent/40 transition-all duration-300"
+                                className="w-full bg-accent text-white py-8 rounded-[2.5rem] font-black tracking-[0.3em] text-xs shadow-2xl shadow-accent/25 transition-all duration-500 relative group overflow-hidden"
                             >
-                                REQUEST APPOINTMENT
+                                <span className="relative z-10">REQUEST APPOINTMENT</span>
+                                <div className="absolute inset-0 bg-dark translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                             </motion.button>
+                            
+                            <p className="text-[10px] text-dark/30 text-center font-bold tracking-widest leading-relaxed">
+                                BY CONFIRMING, YOU AGREE TO OUR <br /> TERMS & COLLECTION OF DATA
+                            </p>
                         </form>
                     </motion.div>
                 </div>
