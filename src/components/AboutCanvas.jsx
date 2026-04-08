@@ -14,7 +14,7 @@ function AnimatedBlob() {
 
   return (
     <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
-        <Sphere args={[1, 100, 100]} scale={2.5}>
+        <Sphere args={[1, 64, 64]} scale={2.5}>
             <MeshDistortMaterial
                 color="#fdf2f2"
                 speed={3}
@@ -28,10 +28,10 @@ function AnimatedBlob() {
 
 export default function AboutCanvas() {
   return (
-    <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
-      <Canvas camera={{ position: [0, 0, 5] }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[10, 10, 5]} intensity={1} />
+    <div className="absolute inset-0 z-0 pointer-events-none opacity-30">
+      <Canvas dpr={1} camera={{ position: [0, 0, 5] }} gl={{ antialias: false, powerPreference: "high-performance" }}>
+        <ambientLight intensity={0.4} />
+        <directionalLight position={[10, 10, 5]} intensity={0.8} />
         <pointLight position={[-10, -10, -5]} color="#c5a059" intensity={1} />
         <AnimatedBlob />
       </Canvas>

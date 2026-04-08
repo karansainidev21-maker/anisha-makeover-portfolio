@@ -12,6 +12,12 @@ const About = () => {
             {/* 3D Background Effect - Only render if in View */}
             {inView && <AboutCanvas />}
 
+            {/* Premium Gold Aura Background (Optimized) */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-accent/5 rounded-full blur-[80px]" />
+                <div className="absolute bottom-0 left-0 w-[30%] h-[30%] bg-secondary/10 rounded-full blur-[60px]" />
+            </div>
+
             <div className="container mx-auto px-6 relative z-10">
                 <div className="grid md:grid-cols-2 gap-16 items-center">
                     <motion.div

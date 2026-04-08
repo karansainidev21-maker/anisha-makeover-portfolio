@@ -19,8 +19,43 @@ const Contact = () => {
 
     return (
         <section ref={ref} id="contact" className="py-32 bg-white relative overflow-hidden">
-            {/* 3D Background Effect - Only render if visible */}
+            {/* 3D Optimized Effect */}
             {inView && <ContactCanvas />}
+
+            {/* Premium Aesthetic Aura Background - Optimized for Performance */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden translate-z-0">
+                <motion.div 
+                    animate={{ 
+                        scale: [1, 1.2, 1],
+                        x: [0, 60, 0],
+                        y: [0, 30, 0],
+                        opacity: [0.1, 0.15, 0.1]
+                    }}
+                    transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                    className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-accent/20 blur-[50px]"
+                />
+                <motion.div 
+                    animate={{ 
+                        scale: [1, 1.15, 1],
+                        x: [0, -50, 0],
+                        y: [0, 80, 0],
+                        opacity: [0.08, 0.12, 0.08]
+                    }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="absolute top-[15%] -right-[5%] w-[35%] h-[35%] rounded-full bg-secondary blur-[60px]"
+                />
+                <motion.div 
+                    animate={{ 
+                        scale: [1, 1.3, 1],
+                        opacity: [0.05, 0.08, 0.05]
+                    }}
+                    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                    className="absolute -bottom-[15%] left-[20%] w-[50%] h-[50%] rounded-full bg-accent/10 blur-[70px]"
+                />
+                
+                {/* Subtle Grainy Texture Overlay */}
+                <div className="absolute inset-0 opacity-[0.02] mix-blend-soft-light bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+            </div>
 
             <div className="container mx-auto px-6 relative z-10">
                 <div className="grid lg:grid-cols-2 gap-20 items-center">

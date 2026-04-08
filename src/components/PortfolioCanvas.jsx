@@ -7,7 +7,7 @@ function ParticleWave() {
   const mouse = useRef([0, 0])
 
   const [particles, positions] = useMemo(() => {
-    const count = 1000
+    const count = 600
     const positions = new Float32Array(count * 3)
     for (let i = 0; i < count; i++) {
         positions[i * 3] = (Math.random() - 0.5) * 15
@@ -51,8 +51,8 @@ function ParticleWave() {
 
 export default function PortfolioCanvas() {
   return (
-    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-white/50 backdrop-blur-[2px]">
-      <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 5] }}>
+    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-white/50">
+      <Canvas dpr={1} camera={{ position: [0, 0, 5] }} gl={{ antialias: false, powerPreference: "high-performance" }}>
         <ParticleWave />
       </Canvas>
     </div>

@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -14,11 +16,11 @@ const Navbar = () => {
     }, []);
 
     const navLinks = [
-        { name: "HOME", href: "#home" },
-        { name: "ABOUT", href: "#about" },
-        { name: "SERVICES", href: "#services" },
-        { name: "PORTFOLIO", href: "#portfolio" },
-        { name: "CONTACT", href: "#contact" },
+        { name: "HOME", href: "/#home" },
+        { name: "ABOUT", href: "/#about" },
+        { name: "SERVICES", href: "/#services" },
+        { name: "PORTFOLIO", href: "/#portfolio" },
+        { name: "CONTACT", href: "/#contact" },
     ];
 
     return (
@@ -37,35 +39,32 @@ const Navbar = () => {
                         : "bg-transparent py-4 md:py-6"
                     }
                 `}>
-                    <motion.div
-                        whileHover={{ scale: 1.05 }}
+                    <Link
+                        to="/"
                         className="text-xl md:text-2xl font-serif font-black text-dark tracking-tighter cursor-pointer flex items-center gap-2"
                     >
                         <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-white text-[10px] font-bold">AS</div>
                         <span>ANISHA <span className="text-accent">MAKEOVER</span></span>
-                    </motion.div>
+                    </Link>
 
                     {/* Desktop Menu */}
                     <nav className="hidden lg:flex gap-10 items-center font-sans text-[11px] font-bold tracking-[0.25em] text-dark">
                         {navLinks.map((link) => (
-                            <motion.a
+                            <Link
                                 key={link.name}
-                                href={link.href}
-                                whileHover={{ y: -2 }}
+                                to={link.href}
                                 className="relative group transition-colors duration-300 hover:text-accent"
                             >
                                 {link.name}
                                 <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full" />
-                            </motion.a>
+                            </Link>
                         ))}
-                        <motion.a
-                            href="#contact"
-                            whileHover={{ scale: 1.05, y: -2 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="bg-dark text-white px-8 py-3 rounded-full hover:bg-accent hover:shadow-lg transition-all duration-300 text-[10px] tracking-[0.2em] inline-block shadow-md"
+                        <Link
+                            to="/#contact"
+                            className="bg-dark text-white px-8 py-3 rounded-full hover:bg-accent hover:shadow-lg transition-all duration-300 text-[10px] tracking-[0.2em] inline-block shadow-md text-center"
                         >
                             BOOK APPOINTMENT
-                        </motion.a>
+                        </Link>
                     </nav>
 
                     {/* Mobile Menu Toggle */}
@@ -116,12 +115,9 @@ const Navbar = () => {
 
                             <div className="flex flex-col gap-8 text-center mt-6">
                                 {navLinks.map((link, idx) => (
-                                    <motion.a
+                                    <Link
                                         key={link.name}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: idx * 0.1 }}
-                                        href={link.href}
+                                        to={link.href}
                                         onClick={() => setIsOpen(false)}
                                         className="text-3xl font-serif font-black text-dark hover:text-accent transition-all group overflow-hidden"
                                     >
@@ -131,18 +127,15 @@ const Navbar = () => {
                                         >
                                             {link.name}
                                         </motion.span>
-                                    </motion.a>
+                                    </Link>
                                 ))}
-                                <motion.a
-                                    href="#contact"
+                                <Link
+                                    to="/#contact"
                                     onClick={() => setIsOpen(false)}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.6 }}
-                                    className="mt-6 bg-accent text-white py-5 rounded-3xl font-bold tracking-[0.2em] text-sm shadow-xl hover:shadow-accent/40 shadow-accent/20 transition-all"
+                                    className="mt-6 bg-accent text-white py-5 rounded-3xl font-bold tracking-[0.2em] text-sm shadow-xl hover:shadow-accent/40 shadow-accent/20 transition-all text-center"
                                 >
                                     BOOK APPOINTMENT
-                                </motion.a>
+                                </Link>
                             </div>
 
                             <div className="mt-12 text-center border-t border-pink-50 pt-8">
