@@ -3,6 +3,13 @@ import { motion, useInView } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import PortfolioCanvas from '../components/PortfolioCanvas';
 
+import royalBridalImg from '../assets/royalbridalimg/royal_bridal_main.png';
+import glassSkinImg from '../assets/glassskinimg/glassskin1.jpeg';
+import eveningGlamImg from '../assets/eveningglamimg/evening1.jpeg';
+import softMatteImg from '../assets/soft_matte_main.png';
+import traditionalIndianImg from '../assets/traditional_indian_main.png';
+import hdPartyImg from '../assets/hdparty/hd_party_makeup_main.png';
+
 const Portfolio = () => {
     const ref = useRef(null);
     const navigate = useNavigate();
@@ -12,14 +19,39 @@ const Portfolio = () => {
         {
             title: "Royal Bridal",
             type: "LUXURY",
-            img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=2000",
+            img: royalBridalImg,
             link: "/royal-bridal"
         },
-        { title: "Glass Skin Look", type: "EDITORIAL", img: "https://images.unsplash.com/photo-1596704017254-9b121068fb31?q=80&w=2000" },
-        { title: "Evening Glam", type: "PARTY", img: "https://images.unsplash.com/photo-1502323777036-f29e3972d82f?q=80&w=2000" },
-        { title: "Soft Matte", type: "FASHION", img: "https://images.unsplash.com/photo-1512496011951-a96b8344693a?q=80&w=2000" },
-        { title: "Traditional Indian", type: "CULTURAL", img: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=2000" },
-        { title: "Editorial Look", type: "MAGAZINE", img: "https://images.unsplash.com/photo-1517423568366-8b83523034fd?q=80&w=2000" }
+        {
+            title: "Glass Skin Look",
+            type: "EDITORIAL",
+            img: glassSkinImg,
+            link: "/glass-skin-look"
+        },
+        {
+            title: "Evening Glam",
+            type: "PARTY",
+            img: eveningGlamImg,
+            link: "/evening-glam"
+        },
+        {
+            title: "Soft Matte",
+            type: "FASHION",
+            img: softMatteImg,
+            link: "/soft-matte"
+        },
+        {
+            title: "Traditional Indian",
+            type: "CULTURAL",
+            img: traditionalIndianImg,
+            link: "/traditional-indian"
+        },
+        {
+            title: "HD Party Makeup",
+            type: "HIGH DEFINITION",
+            img: hdPartyImg,
+            link: "/party-makeup"
+        }
     ];
 
     const handleCardClick = (link) => {

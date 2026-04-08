@@ -33,7 +33,7 @@ const Hero = () => {
         <section
             id="home"
             ref={heroRef}
-            className="relative h-screen flex items-center justify-center overflow-hidden bg-white mt-24 md:mt-32 pt-16"
+            className="relative h-screen flex items-center justify-center overflow-hidden bg-white"
         >
             {/* 3D Effects Layer */}
             <ThreeCanvas />

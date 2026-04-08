@@ -6,6 +6,11 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Loader from './components/Loader';
 import Home from './pages/Home';
+import HDPartyMakeup from './pages/HDPartyMakeup';
+import TraditionalIndian from './pages/TraditionalIndian';
+import SoftMatte from './pages/SoftMatte';
+import EveningGlam from './pages/EveningGlam';
+import GlassSkinLook from './pages/GlassSkinLook';
 import RoyalBridal from './pages/RoyalBridal';
 
 function App() {
@@ -66,6 +71,11 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/royal-bridal" element={<RoyalBridal />} />
+                <Route path="/glass-skin-look" element={<GlassSkinLook />} />
+                <Route path="/evening-glam" element={<EveningGlam />} />
+                <Route path="/soft-matte" element={<SoftMatte />} />
+                <Route path="/traditional-indian" element={<TraditionalIndian />} />
+                <Route path="/party-makeup" element={<HDPartyMakeup />} />
             </Routes>
             <Footer />
             

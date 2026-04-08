@@ -23,6 +23,9 @@ const Navbar = () => {
         { name: "CONTACT", href: "/#contact" },
     ];
 
+    const isHomePage = location.pathname === '/';
+    const shouldBeSolid = scrolled || !isHomePage;
+
     return (
         <>
             <motion.header
@@ -34,21 +37,21 @@ const Navbar = () => {
                 <div className={`
                     w-full max-w-7xl flex justify-between items-center px-6 md:px-10 py-3 rounded-full 
                     transition-all duration-500 
-                    ${scrolled
+                    ${shouldBeSolid
                         ? "bg-white/80 backdrop-blur-2xl border border-white/40 shadow-[0_8px_32px_0_rgba(255,182,193,0.1)] py-4"
                         : "bg-transparent py-4 md:py-6"
                     }
                 `}>
                     <Link
                         to="/"
-                        className="text-xl md:text-2xl font-serif font-black text-dark tracking-tighter cursor-pointer flex items-center gap-2"
+                        className={`text-xl md:text-2xl font-serif font-black tracking-tighter cursor-pointer flex items-center gap-2 ${shouldBeSolid ? 'text-dark' : 'text-white'}`}
                     >
                         <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-white text-[10px] font-bold">AS</div>
                         <span>ANISHA <span className="text-accent">MAKEOVER</span></span>
                     </Link>
 
                     {/* Desktop Menu */}
-                    <nav className="hidden lg:flex gap-10 items-center font-sans text-[11px] font-bold tracking-[0.25em] text-dark">
+                    <nav className={`hidden lg:flex gap-10 items-center font-sans text-[11px] font-bold tracking-[0.25em] ${shouldBeSolid ? 'text-dark' : 'text-white'}`}>
                         {navLinks.map((link) => (
                             <Link
                                 key={link.name}
@@ -61,7 +64,7 @@ const Navbar = () => {
                         ))}
                         <Link
                             to="/#contact"
-                            className="bg-dark text-white px-8 py-3 rounded-full hover:bg-accent hover:shadow-lg transition-all duration-300 text-[10px] tracking-[0.2em] inline-block shadow-md text-center"
+                            className={`px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 text-[10px] tracking-[0.2em] inline-block shadow-md text-center ${shouldBeSolid ? 'bg-dark text-white hover:bg-accent' : 'bg-white text-dark hover:bg-accent hover:text-white'}`}
                         >
                             BOOK APPOINTMENT
                         </Link>
@@ -71,20 +74,20 @@ const Navbar = () => {
                     <motion.button
                         whileTap={{ scale: 0.9 }}
                         onClick={() => setIsOpen(!isOpen)}
-                        className="lg:hidden w-10 h-10 flex items-center justify-center rounded-full bg-dark/5 text-dark"
+                        className={`lg:hidden w-10 h-10 flex items-center justify-center rounded-full transition-colors duration-300 ${shouldBeSolid ? 'bg-dark/5 text-dark' : 'bg-white/10 text-white'}`}
                     >
                         <div className="w-5 h-4 flex flex-col justify-between relative">
                             <motion.span
                                 animate={isOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-                                className="w-full h-[2px] bg-dark block rounded-full origin-left"
+                                className={`w-full h-[2px] block rounded-full origin-left ${scrolled ? 'bg-dark' : 'bg-white'}`}
                             />
                             <motion.span
                                 animate={isOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
-                                className="w-1/2 h-[2px] bg-dark block rounded-full"
+                                className={`w-1/2 h-[2px] block rounded-full ${scrolled ? 'bg-dark' : 'bg-white'}`}
                             />
                             <motion.span
                                 animate={isOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-                                className="w-full h-[2px] bg-dark block rounded-full origin-left"
+                                className={`w-full h-[2px] block rounded-full origin-left ${scrolled ? 'bg-dark' : 'bg-white'}`}
                             />
                         </div>
                     </motion.button>
