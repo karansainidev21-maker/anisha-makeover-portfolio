@@ -1,59 +1,29 @@
-import { useRef, useMemo } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import * as THREE from 'three'
-
-function ParticleWave() {
-  const meshRef = useRef()
-  const mouse = useRef([0, 0])
-
-  const [particles, positions] = useMemo(() => {
-    const count = 600
-    const positions = new Float32Array(count * 3)
-    for (let i = 0; i < count; i++) {
-        positions[i * 3] = (Math.random() - 0.5) * 15
-        positions[i * 3 + 1] = (Math.random() - 0.5) * 15
-        positions[i * 3 + 2] = (Math.random() - 0.5) * 10
-    }
-    return [count, positions]
-  }, [])
-
-  useFrame((state) => {
-    if (meshRef.current) {
-        meshRef.current.rotation.y += 0.001
-        meshRef.current.rotation.x += 0.0005
-        
-        // Follow mouse subtly
-        meshRef.current.position.x = THREE.MathUtils.lerp(meshRef.current.position.x, state.mouse.x * 2, 0.05)
-        meshRef.current.position.y = THREE.MathUtils.lerp(meshRef.current.position.y, state.mouse.y * 2, 0.05)
-    }
-  })
-
-  return (
-    <points ref={meshRef}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={particles}
-          array={positions}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <pointsMaterial
-        size={0.03}
-        color="#c5a059"
-        transparent
-        opacity={0.4}
-        sizeAttenuation
-      />
-    </points>
-  )
-}
+import { Canvas } from '@react-three/fiber'
+import { Stars, Float } from '@react-three/drei'
 
 export default function PortfolioCanvas() {
   return (
-    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-white/50">
-      <Canvas dpr={1} camera={{ position: [0, 0, 5] }} gl={{ antialias: false, powerPreference: "high-performance" }}>
-        <ParticleWave />
+    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-[#0A0A0A]">
+      <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 10] }}>
+        <color attach="background" args={['#0A0A0A']} />
+        
+        <Stars 
+            radius={100} 
+            depth={50} 
+            count={5000} 
+            factor={4} 
+            saturation={0} 
+            fade 
+            speed={1}
+        />
+        
+        {/* Subtle Ambient Glows */}
+        <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
+            <mesh position={[10, 5, -10]}>
+                <sphereGeometry args={[5, 32, 32]} />
+                <meshBasicMaterial color="#5c4033" transparent opacity={0.03} />
+            </mesh>
+        </Float>
       </Canvas>
     </div>
   )

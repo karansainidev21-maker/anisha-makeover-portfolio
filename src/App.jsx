@@ -13,6 +13,8 @@ import EveningGlam from './pages/EveningGlam';
 import GlassSkinLook from './pages/GlassSkinLook';
 import RoyalBridal from './pages/RoyalBridal';
 
+import GlobalCanvas from './components/GlobalCanvas';
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
@@ -24,11 +26,12 @@ function App() {
     }, 3000);
 
     const lenis = new Lenis({
-        duration: 1.2,
+        duration: 1.5,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
+        wheelMultiplier: 1.2,
     });
 
     function raf(time) {
@@ -50,7 +53,6 @@ function App() {
         const id = location.hash.replace('#', '');
         const element = document.getElementById(id);
         if (element) {
-            // Delay to allow page content to render and Lenis to initialize
             setTimeout(() => {
                 element.scrollIntoView({ behavior: 'smooth' });
             }, 500);
@@ -61,12 +63,14 @@ function App() {
   }, [location.pathname, location.hash]);
 
   return (
-    <>
+    <div className="bg-black">
+        <GlobalCanvas />
+        
         <AnimatePresence mode="wait">
             {isLoading && <Loader key="loader" />}
         </AnimatePresence>
         
-        <main className="font-sans antialiased bg-white selection:bg-accent selection:text-white">
+        <main className="relative z-10 font-sans antialiased text-white selection:bg-secondary selection:text-dark">
             <Navbar />
             <Routes>
                 <Route path="/" element={<Home />} />
@@ -79,17 +83,17 @@ function App() {
             </Routes>
             <Footer />
             
-            {/* Scroll to top button */}
+            {/* Minimalist Scroll Top */}
             <button 
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="fixed bottom-8 right-8 w-14 h-14 bg-accent/80 hover:bg-accent text-white rounded-full transition-all duration-300 z-50 shadow-lg flex items-center justify-center group uppercase text-[10px] font-bold"
+                className="fixed bottom-10 right-10 w-12 h-12 bg-white/5 backdrop-blur-md border border-white/10 hover:border-secondary text-white rounded-full transition-all duration-500 z-50 flex items-center justify-center group"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 group-hover:-translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:-translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
                 </svg>
             </button>
         </main>
-    </>
+    </div>
   );
 }
 

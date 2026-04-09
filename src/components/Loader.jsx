@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 const Loader = () => {
@@ -11,9 +11,9 @@ const Loader = () => {
                     clearInterval(interval);
                     return 100;
                 }
-                return prev + Math.random() * 10;
+                return prev + Math.random() * 15;
             });
-        }, 120);
+        }, 150);
 
         return () => clearInterval(interval);
     }, []);
@@ -23,25 +23,28 @@ const Loader = () => {
             initial={{ opacity: 1 }}
             exit={{ 
                 opacity: 0,
-                y: -100,
-                transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+                y: '-100%',
+                transition: { duration: 1, ease: [0.22, 1, 0.36, 1] }
             }}
-            className="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center p-6"
+            className="fixed inset-0 z-[100] bg-[#0A0A0A] flex flex-col items-center justify-center p-6 overflow-hidden"
         >
-            <div className="relative flex flex-col items-center max-w-md w-full">
-                {/* Luxury Logo/Initials Icon */}
+            <div className="relative flex flex-col items-center max-w-md w-full z-10">
+                {/* Luxury Initials */}
                 <motion.div
-                    initial={{ scale: 0.5, opacity: 0 }}
+                    initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="w-20 h-20 md:w-28 md:h-28 rounded-full bg-accent flex items-center justify-center text-white text-2xl md:text-3xl font-serif font-black mb-10 shadow-[0_20px_50px_rgba(197,160,89,0.3)] relative group"
+                    transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="w-24 h-24 rounded-full border border-secondary/20 flex items-center justify-center text-secondary text-4xl font-serif font-black mb-12 relative group"
                 >
                     <motion.div 
-                        animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0.1, 0.3] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute inset-0 rounded-full bg-accent -z-10"
+                        animate={{ 
+                            scale: [1, 1.2, 1], 
+                            opacity: [0.2, 0.1, 0.2] 
+                        }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute inset-0 rounded-full bg-secondary -z-10"
                     />
-                    AS
+                    <span className="relative z-10 italic">AM</span>
                 </motion.div>
 
                 {/* Brand Text */}
@@ -51,26 +54,37 @@ const Loader = () => {
                     transition={{ delay: 0.3, duration: 1 }}
                     className="text-center"
                 >
-                    <h2 className="text-2xl md:text-4xl font-serif font-black text-dark tracking-tighter mb-2">
-                        Anisha <span className="text-accent underline decoration-dark/5 underline-offset-8">Makeover</span>
+                    <h2 className="text-3xl md:text-5xl font-serif font-black text-white tracking-tighter mb-4">
+                        ANISHA <span className="text-secondary italic">Makeover</span>
                     </h2>
-                    <p className="text-[10px] md:text-xs font-black tracking-[0.5em] text-dark/30 uppercase mt-4">
-                        Defining Excellence in Artistry
-                    </p>
+                    <div className="flex items-center justify-center gap-4">
+                        <span className="h-[1px] w-6 bg-white/10"></span>
+                        <p className="text-[9px] font-black tracking-[0.6em] text-white/30 uppercase">
+                            Premium Artistry Studio
+                        </p>
+                        <span className="h-[1px] w-6 bg-white/10"></span>
+                    </div>
                 </motion.div>
 
                 {/* Elegant Progress Container */}
-                <div className="mt-16 w-full max-w-[240px]">
-                    <div className="flex justify-between items-end mb-3">
-                        <span className="text-[9px] font-black tracking-widest text-dark/40 uppercase">Preparation</span>
-                        <span className="text-[11px] font-black text-accent tabular-nums">{Math.round(progress)}%</span>
+                <div className="mt-20 w-full max-w-[280px]">
+                    <div className="flex justify-between items-end mb-4 px-1">
+                        <motion.span 
+                            key={Math.round(progress)}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="text-[10px] font-black text-secondary tabular-nums tracking-widest"
+                        >
+                            {Math.round(progress)}%
+                        </motion.span>
+                        <span className="text-[8px] font-black tracking-[0.3em] text-white/20 uppercase">REFINING DETAILS</span>
                     </div>
-                    <div className="h-[2px] w-full bg-dark/5 rounded-full overflow-hidden relative">
+                    <div className="h-[1px] w-full bg-white/5 relative overflow-hidden">
                         <motion.div 
                             initial={{ width: 0 }}
                             animate={{ width: `${progress}%` }}
                             transition={{ ease: "easeOut", duration: 0.5 }}
-                            className="absolute top-0 left-0 h-full bg-accent"
+                            className="absolute top-0 left-0 h-full bg-secondary"
                         />
                     </div>
                 </div>
@@ -80,28 +94,22 @@ const Loader = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5 }}
-                    className="mt-8 text-[9px] font-black tracking-[0.3em] text-accent/60 uppercase text-center"
+                    className="mt-12 text-[8px] font-black tracking-[0.4em] text-white/20 uppercase text-center italic"
                 >
-                    {progress < 30 && "Initializing 3D Space..."}
-                    {progress >= 30 && progress < 60 && "Loading Portfolio Assets..."}
-                    {progress >= 60 && progress < 90 && "Perfecting Lighting & Textures..."}
-                    {progress >= 90 && "Almost Ready..."}
+                    {progress < 25 && "Preparing the Canvas..."}
+                    {progress >= 25 && progress < 50 && "Selecting Premium Palettes..."}
+                    {progress >= 50 && progress < 75 && "Perfecting Lighting & Aura..."}
+                    {progress >= 75 && "Finalizing the Masterpiece..."}
                 </motion.div>
             </div>
 
-            {/* Luxurious Background Touches */}
-            <div className="absolute top-12 left-12 flex flex-col gap-2">
-                <div className="w-12 h-[1px] bg-dark/10" />
-                <div className="w-6 h-[1px] bg-dark/10" />
+            {/* Background Decorative Touches */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/[0.02] font-serif font-black text-[50vw] leading-none pointer-events-none select-none italic select-none">
+                AM
             </div>
-            <div className="absolute bottom-12 right-12 flex flex-col items-end gap-2">
-                <div className="w-6 h-[1px] bg-dark/10" />
-                <div className="w-12 h-[1px] bg-dark/10" />
-            </div>
-            
-            {/* Subtle floating aura blobs in background */}
-            <div className="absolute top-1/4 -left-20 w-80 h-80 bg-accent/5 rounded-full blur-[100px] -z-10" />
-            <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-secondary/20 rounded-full blur-[100px] -z-10" />
+
+            <div className="absolute top-10 left-10 w-20 h-20 border-l border-t border-white/5" />
+            <div className="absolute bottom-10 right-10 w-20 h-20 border-r border-b border-white/5" />
         </motion.div>
     );
 };

@@ -1,129 +1,91 @@
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import bridalImg from '../assets/bridal_service.png';
 import academyImg from '../assets/academy_service.png';
-import ServicesCanvas from '../components/ServicesCanvas';
 
 const Services = () => {
-    const ref = useRef(null);
-    const inView = useInView(ref, { once: false, amount: 0.1 });
     const services = [
-        {
-            title: "Bridal Makeup",
-            price: "₹7,000+",
-            desc: "The complete transformation for your wedding day with high-end premium makeup.",
-            img: bridalImg
-        },
-        {
-            title: "Beauty Academy",
-            price: "Join Now",
-            desc: "Learn professional makeup and hairstyle artistry from the expert, Nisha Saini.",
-            img: academyImg
-        },
-        {
-            title: "Chemical Work",
-            price: "Customized",
-            desc: "Professional hair chemical treatments including Smoothening, Keratin, and Botox.",
-            img: "https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=2000"
-        },
-        {
-            title: "Hairstyle",
-            price: "₹800+",
-            desc: "Expertly crafted hairstyles for every occasion, from classic to modern trends.",
-            img: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2000"
-        },
-        {
-            title: "Nail Extensions",
-            price: "₹1,500+",
-            desc: "Get beautiful, long-lasting nail extensions with creative, bespoke nail art.",
-            img: "https://images.unsplash.com/photo-1632345031435-81979cd75a00?q=80&w=2000"
-        },
-        {
-            title: "HD Makeup",
-            price: "₹4,000+",
-            desc: "Flawless, high-definition makeup for shoots, parties, and special events.",
-            img: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2000"
-        }
+        { title: "Bridal Artistry", price: "₹7,000+", desc: "Premium transformations tailored for your most legacy moments.", img: bridalImg },
+        { title: "The Academy", price: "Enroll Now", desc: "Master the craft with Anisha Saini's professional certification.", img: academyImg },
+        { title: "Hair Couture", price: "Customized", desc: "Chemical treatments that blend protection with modern luxury.", img: "https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=2000" }
     ];
 
-    return (
-        <section ref={ref} id="services" className="py-32 bg-[#fffafb] relative overflow-hidden">
-            {/* 3D Background Effect */}
-            {inView && <ServicesCanvas />}
+    const handleScrollToContact = () => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
+    return (
+        <section id="services" className="py-24 md:py-48 relative overflow-hidden">
             <div className="container mx-auto px-6 relative z-10">
-                <div className="max-w-3xl mx-auto text-center mb-20">
-                    <motion.span
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-accent font-sans font-bold tracking-[0.3em] text-[10px] md:text-sm mb-4 block uppercase leading-none"
-                    >
-                        OUR LUXURY SERVICES
-                    </motion.span>
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="text-4xl md:text-7xl font-serif font-black text-dark mb-8 leading-[1.1]"
-                    >
-                        Redefining Your <br /> Elegance
-                    </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 }}
-                        className="text-dark/60 text-lg md:text-xl font-sans max-w-lg mx-auto"
-                    >
-                        Every brushstroke and detail is crafted to highlight your unique beauty and personality.
-                    </motion.p>
+                <div className="flex flex-col xl:flex-row gap-12 xl:items-end mb-20 md:mb-32">
+                    <div className="flex-1">
+                        <div className="flex items-center gap-4 mb-6 md:mb-8">
+                            <span className="h-[1px] w-10 bg-secondary/30"></span>
+                            <span className="text-secondary/60 font-sans font-black tracking-[0.4em] text-[10px] uppercase">THE EXPERIENCE</span>
+                        </div>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2 }}
+                            className="text-4xl md:text-6xl font-serif font-black text-white leading-[1.1] tracking-tighter"
+                        >
+                            Elevate Your <br /> <span className="text-secondary italic">Aura</span>
+                        </motion.h2>
+                    </div>
+                    <div className="max-w-md xl:pb-4">
+                        <p className="text-white/30 text-base md:text-xl font-sans leading-relaxed italic font-light border-l border-white/5 pl-6 md:pl-8">
+                            "Excellence is not an act, but a habit. We provide bespoke beauty solutions tailored for the elite."
+                        </p>
+                    </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div className="grid grid-cols-1 gap-6 md:gap-8 max-w-5xl mx-auto">
                     {services.map((service, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 40 }}
+                            initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                            viewport={{ once: true }}
-                            whileHover={{ y: -15 }}
-                            className="bg-white rounded-[2.5rem] overflow-hidden shadow-[0_15px_45px_0_rgba(255,182,193,0.08)] hover:shadow-[0_15px_45px_0_rgba(255,182,193,0.2)] transition-all duration-500 group border border-white/40"
+                            whileTap={{ scale: 0.98 }}
+                            transition={{ duration: 0.8, delay: index * 0.1 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            onClick={handleScrollToContact}
+                            className="group relative h-[300px] md:h-[350px] overflow-hidden rounded-[2rem] md:rounded-[3rem] border border-white/5 cursor-pointer"
                         >
-                            <div className="h-72 overflow-hidden relative">
-                                <img
-                                    src={service.img}
-                                    alt={service.title}
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                <div className="absolute top-6 right-6 bg-white/90 text-dark px-5 py-2 rounded-2xl text-[10px] font-black tracking-widest backdrop-blur-md shadow-lg">
-                                    {service.price}
+                            <img
+                                src={service.img}
+                                alt={service.title}
+                                className="w-full h-full object-cover transition-transform duration-[2s] md:group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent group-hover:bg-black/20 transition-all duration-700" />
+                            
+                            <div className="absolute inset-x-0 bottom-0 p-8 md:p-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                                <div className="max-w-xl">
+                                    <h3 className="text-3xl md:text-5xl font-serif font-black text-white mb-2 md:group-hover:text-secondary transition-colors duration-500 italic">
+                                        {service.title}
+                                    </h3>
+                                    <p className="text-white/40 text-[10px] md:text-xs font-light uppercase tracking-widest line-clamp-1">
+                                        {service.desc}
+                                    </p>
                                 </div>
-                            </div>
-                            <div className="p-10 text-left">
-                                <h3 className="text-3xl font-serif font-black text-dark mb-4">
-                                    {service.title}
-                                </h3>
-                                <p className="text-dark/50 font-sans leading-relaxed mb-8 text-sm md:text-base">
-                                    {service.desc}
-                                </p>
-                                <motion.a
-                                    href="#contact"
-                                    whileHover={{ x: 5 }}
-                                    className="text-[12px] font-black text-accent tracking-[0.2em] inline-flex items-center gap-3 transition-all duration-300 uppercase"
-                                >
-                                    BOOK SESSION
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                    </svg>
-                                </motion.a>
+                                
+                                <div className="flex flex-col items-start md:items-end gap-4">
+                                    <span className="text-secondary/80 font-black text-lg md:text-2xl tracking-wider">{service.price}</span>
+                                    <button className="px-8 py-3 bg-secondary text-dark md:bg-transparent md:border md:border-white/10 md:text-white/40 md:group-hover:border-secondary md:group-hover:text-dark md:group-hover:bg-secondary rounded-full text-[8px] font-black tracking-widest transition-all duration-500 uppercase active:scale-95">
+                                        RESERVE NOW
+                                    </button>
+                                </div>
                             </div>
                         </motion.div>
                     ))}
                 </div>
+            </div>
+            
+            {/* Background Texture - Restored to AM for Consistency */}
+            <div className="absolute top-1/2 -right-[10%] -translate-y-1/2 text-white/[0.01] font-serif font-black text-[30vw] leading-none pointer-events-none select-none italic rotate-12">
+                AM
             </div>
         </section>
     );

@@ -38,35 +38,40 @@ const Navbar = () => {
                     w-full max-w-7xl flex justify-between items-center px-6 md:px-10 py-3 rounded-full 
                     transition-all duration-500 
                     ${shouldBeSolid
-                        ? "bg-white/80 backdrop-blur-2xl border border-white/40 shadow-[0_8px_32px_0_rgba(255,182,193,0.1)] py-4"
+                        ? "bg-black/40 backdrop-blur-3xl border border-white/10 shadow-2xl py-4"
                         : "bg-transparent py-4 md:py-6"
                     }
                 `}>
                     <Link
                         to="/"
-                        className={`text-xl md:text-2xl font-serif font-black tracking-tighter cursor-pointer flex items-center gap-2 ${shouldBeSolid ? 'text-dark' : 'text-white'}`}
+                        onClick={() => window.scrollTo(0, 0)}
+                        className="flex flex-col group py-4"
                     >
-                        <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-white text-[10px] font-bold">AS</div>
-                        <span>ANISHA <span className="text-accent">MAKEOVER</span></span>
+                        <span className="text-2xl md:text-3xl font-serif font-black text-white leading-none tracking-tight group-hover:text-secondary transition-colors duration-500">
+                            ANISHA
+                        </span>
+                        <span className="text-[10px] md:text-xs font-sans font-black tracking-[0.6em] text-secondary/80 leading-none mt-1 group-hover:text-white transition-colors duration-500 uppercase">
+                            Makeover
+                        </span>
                     </Link>
 
                     {/* Desktop Menu */}
-                    <nav className={`hidden lg:flex gap-10 items-center font-sans text-[11px] font-bold tracking-[0.25em] ${shouldBeSolid ? 'text-dark' : 'text-white'}`}>
+                    <nav className="hidden lg:flex gap-14 items-center">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.name}
                                 to={link.href}
-                                className="relative group transition-colors duration-300 hover:text-accent"
+                                className="relative text-[10px] font-black tracking-[0.4em] text-white/50 hover:text-white transition-all duration-300 group py-2"
                             >
                                 {link.name}
-                                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full" />
+                                <span className="absolute bottom-0 left-0 w-0 h-[1.px] bg-secondary group-hover:w-full transition-all duration-700" />
                             </Link>
                         ))}
                         <Link
                             to="/#contact"
-                            className={`px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 text-[10px] tracking-[0.2em] inline-block shadow-md text-center ${shouldBeSolid ? 'bg-dark text-white hover:bg-accent' : 'bg-white text-dark hover:bg-accent hover:text-white'}`}
+                            className="px-10 py-4 bg-secondary text-dark rounded-full text-[10px] font-black tracking-widest hover:bg-white hover:shadow-[0_0_30px_rgba(191,155,106,0.5)] transition-all duration-500 uppercase"
                         >
-                            BOOK APPOINTMENT
+                            RESERVE
                         </Link>
                     </nav>
 
@@ -74,20 +79,20 @@ const Navbar = () => {
                     <motion.button
                         whileTap={{ scale: 0.9 }}
                         onClick={() => setIsOpen(!isOpen)}
-                        className={`lg:hidden w-10 h-10 flex items-center justify-center rounded-full transition-colors duration-300 ${shouldBeSolid ? 'bg-dark/5 text-dark' : 'bg-white/10 text-white'}`}
+                        className={`lg:hidden w-12 h-12 flex items-center justify-center rounded-full transition-all duration-500 ${shouldBeSolid ? 'bg-secondary text-dark' : 'bg-white/10 text-white'}`}
                     >
-                        <div className="w-5 h-4 flex flex-col justify-between relative">
+                        <div className="w-6 h-4 flex flex-col justify-between relative">
                             <motion.span
                                 animate={isOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-                                className={`w-full h-[2px] block rounded-full origin-left ${scrolled ? 'bg-dark' : 'bg-white'}`}
+                                className={`w-full h-[2px] block rounded-full origin-left ${shouldBeSolid ? 'bg-dark' : 'bg-white'}`}
                             />
                             <motion.span
                                 animate={isOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
-                                className={`w-1/2 h-[2px] block rounded-full ${scrolled ? 'bg-dark' : 'bg-white'}`}
+                                className={`w-full h-[2px] block rounded-full ${shouldBeSolid ? 'bg-dark' : 'bg-white'}`}
                             />
                             <motion.span
                                 animate={isOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-                                className={`w-full h-[2px] block rounded-full origin-left ${scrolled ? 'bg-dark' : 'bg-white'}`}
+                                className={`w-full h-[2px] block rounded-full origin-left ${shouldBeSolid ? 'bg-dark' : 'bg-white'}`}
                             />
                         </div>
                     </motion.button>
@@ -102,30 +107,31 @@ const Navbar = () => {
                         animate={{ x: 0 }}
                         exit={{ x: '100%' }}
                         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                        className="fixed inset-0 z-[60] bg-dark lg:hidden flex flex-col p-10 md:p-14 overflow-hidden"
+                        className="fixed inset-0 z-[60] bg-[#0A0A0A] lg:hidden flex flex-col p-10 md:p-14 overflow-hidden"
                     >
                         {/* Decorative Background Elements */}
-                        <div className="absolute -top-20 -left-20 w-80 h-80 bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
-                        <div className="absolute bottom-[-10%] right-[-10%] text-white/[0.03] font-serif font-black text-[20rem] leading-none pointer-events-none select-none">
-                            AS
+                        <div className="absolute top-0 right-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/pichica.png')] opacity-10 pointer-events-none" />
+                        <div className="absolute -top-20 -left-20 w-80 h-80 bg-secondary/10 rounded-full blur-[120px] pointer-events-none" />
+                        <div className="absolute bottom-[-5%] right-[-5%] text-white/[0.02] font-serif font-black text-[clamp(10rem,50vw,25rem)] leading-none pointer-events-none select-none italic">
+                            AM
                         </div>
 
                         {/* Top Header in Menu */}
-                        <div className="flex justify-between items-center mb-20 relative z-10">
-                            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-dark text-[10px] font-bold">AS</div>
+                        <div className="flex justify-between items-center mb-24 relative z-10">
+                            <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-dark text-[11px] font-black">AM</div>
                             <button
                                 onClick={() => setIsOpen(false)}
-                                className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group"
+                                className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center group bg-white/5 active:bg-secondary active:text-dark transition-colors"
                             >
                                 <div className="w-6 h-6 relative flex items-center justify-center">
-                                    <span className="absolute w-full h-[1px] bg-white rotate-45" />
-                                    <span className="absolute w-full h-[1px] bg-white -rotate-45" />
+                                    <span className="absolute w-full h-[2px] bg-current rotate-45" />
+                                    <span className="absolute w-full h-[2px] bg-current -rotate-45" />
                                 </div>
                             </button>
                         </div>
 
                         {/* Staggered Navigation Links */}
-                        <nav className="flex flex-col gap-8 md:gap-12 relative z-10">
+                        <nav className="flex flex-col gap-10 md:gap-14 relative z-10">
                             {navLinks.map((link, idx) => (
                                 <motion.div
                                     key={link.name}
@@ -136,9 +142,9 @@ const Navbar = () => {
                                     <Link
                                         to={link.href}
                                         onClick={() => setIsOpen(false)}
-                                        className="text-5xl md:text-7xl font-serif font-black text-white hover:text-accent transition-all inline-block group"
+                                        className="text-6xl md:text-8xl font-serif font-black text-white hover:text-secondary transition-all inline-block group"
                                     >
-                                        <span className="inline-block group-hover:translate-x-4 transition-transform duration-500">
+                                        <span className="inline-block group-hover:translate-x-6 transition-transform duration-700 uppercase">
                                             {link.name}
                                         </span>
                                     </Link>
@@ -155,14 +161,14 @@ const Navbar = () => {
                         >
                             <div className="grid grid-cols-2 gap-10 pt-10 border-t border-white/10">
                                 <div>
-                                    <p className="text-accent font-black text-[10px] tracking-[0.4em] uppercase mb-4">CONNECT</p>
+                                    <p className="text-secondary font-black text-[10px] tracking-[0.4em] uppercase mb-4">CONNECT</p>
                                     <div className="flex flex-col gap-2">
                                         <a href="https://instagram.com/anishamakeover0.1" target="_blank" className="text-white/60 hover:text-white transition-colors text-sm font-bold tracking-widest uppercase">Instagram</a>
                                         <a href="https://wa.me/918954386375" target="_blank" className="text-white/60 hover:text-white transition-colors text-sm font-bold tracking-widest uppercase">WhatsApp</a>
                                     </div>
                                 </div>
                                 <div>
-                                    <p className="text-accent font-black text-[10px] tracking-[0.4em] uppercase mb-4">EXPERIENCE</p>
+                                    <p className="text-secondary font-black text-[10px] tracking-[0.4em] uppercase mb-4">EXPERIENCE</p>
                                     <Link 
                                         to="/#contact" 
                                         onClick={() => setIsOpen(false)}

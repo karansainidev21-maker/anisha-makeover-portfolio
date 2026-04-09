@@ -18,35 +18,37 @@ const EveningGlam = () => {
     ];
 
     return (
-        <div className="bg-dark min-h-screen text-white">
+        <div className="bg-[#0A0A0A] min-h-screen text-white selection:bg-secondary selection:text-white overflow-x-hidden">
             {/* Header Section */}
-            <section className="pt-40 pb-20 px-6 bg-dark relative overflow-hidden">
+            <section className="pt-48 pb-24 px-6 relative overflow-hidden">
                 <div className="container mx-auto text-center relative z-10">
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
+                        initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
+                        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                     >
-                        <span className="text-accent font-sans font-bold tracking-[0.3em] text-[10px] md:text-sm mb-4 block uppercase leading-none">
-                            PARTY SERIES
+                        <span className="text-secondary font-sans font-bold tracking-[0.5em] text-[10px] md:text-sm mb-6 block uppercase">
+                            Nightfall Series
                         </span>
-                        <h1 className="text-4xl md:text-8xl font-serif font-black text-white leading-tight mb-8">
-                            Evening <br /> Glamour
+                        <h1 className="text-5xl md:text-9xl font-serif font-black text-white leading-[0.9] mb-10">
+                            Evening <br /> <span className="text-secondary italic">Glamour</span>
                         </h1>
-                        <p className="text-white/60 font-sans max-w-2xl mx-auto leading-relaxed text-sm md:text-lg italic border-t border-accent/20 pt-8 mt-4 px-4">
-                            "When the sun goes down, the artistry begins. Bold, dramatic, and unapologetically luxurious."
+                        <div className="w-24 h-[1px] bg-secondary/40 mx-auto mb-10"></div>
+                        <p className="text-white/50 font-sans max-w-2xl mx-auto leading-relaxed text-base md:text-xl italic px-4 font-light">
+                            "When the sun goes down, the artistry begins. Bold, dramatic, and unapologetically luxurious looks for your most elite events."
                         </p>
                     </motion.div>
                 </div>
                 
-                {/* Background Sparkle Effect */}
-                <div className="absolute top-0 right-0 w-1/2 h-full bg-accent/5 blur-[100px] pointer-events-none" />
-                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 pointer-events-none" />
+                {/* Background Pattern and Elements */}
+                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/pichica.png')] opacity-20 pointer-events-none" />
+                <div className="absolute top-0 right-0 w-1/3 h-full bg-secondary/5 -skew-x-12 transform translate-x-1/2" />
+                <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-secondary/10 rounded-full blur-[120px]" />
             </section>
 
             {/* Gallery Grid */}
-            <section className="py-16 md:py-24 px-4 md:px-12 bg-white text-dark rounded-t-[3rem] md:rounded-t-[5rem]">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <section className="py-24 md:py-32 px-4 md:px-12 max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
                     {glamImages.map((image, index) => (
                         <motion.div
                             key={index}
@@ -54,41 +56,104 @@ const EveningGlam = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.8, delay: index * 0.1 }}
                             viewport={{ once: true }}
-                            className="relative group overflow-hidden rounded-[2rem] aspect-[3/4] bg-secondary/10"
+                            className="relative group overflow-hidden rounded-[2.5rem] aspect-[3/4] bg-white/5 shadow-2xl shadow-black/50"
                         >
-                            <img 
-                                src={image.url} 
-                                alt={image.title} 
-                                className="w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-1000 ease-out"
+                            <img
+                                src={image.url}
+                                alt={image.title}
+                                className="w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-[1.5s] ease-out"
                             />
-                            
-                            <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-transparent to-transparent flex flex-col items-center justify-end p-8 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                                <h3 className="text-xl md:text-2xl font-serif text-white font-bold mb-4">{image.title}</h3>
-                                <div className="h-[1px] w-12 bg-accent" />
+
+                            <div className="absolute inset-x-0 bottom-0 p-10 bg-gradient-to-t from-black via-black/40 to-transparent lg:translate-y-6 lg:opacity-0 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 transition-all duration-500">
+                                <span className="text-secondary text-[10px] font-bold tracking-widest uppercase mb-2 block">COLLECTION {index + 1}</span>
+                                <h3 className="text-2xl md:text-3xl font-serif text-[#f7efd7] font-bold">{image.title}</h3>
                             </div>
                         </motion.div>
                     ))}
                 </div>
             </section>
 
-            {/* Quote / Conclusion */}
-            <section className="py-20 md:py-32 bg-dark text-white relative overflow-hidden">
-                <div className="container mx-auto px-6 text-center z-10 relative">
-                    <h2 className="text-2xl md:text-5xl font-serif mb-10 md:mb-12 max-w-4xl mx-auto leading-relaxed">
-                        "Your night, your spotlight. We don't just apply makeup; we craft your most confident self."
-                    </h2>
-                    <Link 
-                        to="/#contact" 
-                        className="inline-block px-10 py-4 md:px-12 md:py-5 bg-accent text-white hover:bg-white hover:text-dark rounded-full text-[10px] md:text-xs font-black tracking-widest transition-all duration-300"
-                    >
-                        SHINE TONIGHT
-                    </Link>
+            {/* Feature Section - The Nightfall Philosophy */}
+            <section className="py-24 md:py-40 bg-black text-white">
+                <div className="container mx-auto px-6">
+                    <div className="flex flex-col md:flex-row items-center gap-16 md:gap-24">
+                        <div className="flex-1">
+                            <motion.div
+                                initial={{ opacity: 0, x: -50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 1 }}
+                                viewport={{ once: true }}
+                            >
+                                <h2 className="text-4xl md:text-7xl font-serif font-black mb-8 leading-tight">
+                                    Mastering the <br /> Nighttime Radiance
+                                </h2>
+                                <p className="text-secondary text-xl mb-10 leading-relaxed uppercase tracking-widest font-bold">
+                                    Drama. Depth. Definition.
+                                </p>
+                                <p className="text-white/50 text-xl mb-12 leading-relaxed font-light">
+                                    Evening glamour is about more than just bold colors; it's about strategic lighting and shadow. Our technique focuses on dramatic eye definition and flawless skin contouring that thrives under artificial lighting, ensuring you remain the center of attention all night.
+                                </p>
+                                <ul className="space-y-6">
+                                    {['Cinematic Eye Definition', 'Night-Ready Contour', 'Light-Catching Shimmer', 'Elite Long-wear Finish'].map((item, i) => (
+                                        <li key={i} className="flex items-center gap-6 text-white font-bold text-lg">
+                                            <div className="w-3 h-3 rounded-full bg-secondary"></div>
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </motion.div>
+                        </div>
+                        <div className="flex-1 relative">
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 1 }}
+                                viewport={{ once: true }}
+                                className="relative z-10 rounded-[4rem] md:rounded-[6rem] overflow-hidden aspect-square shadow-2xl"
+                            >
+                                <img src={img1} alt="Evening Glam Philosophy" className="w-full h-full object-cover" />
+                            </motion.div>
+                            <div className="absolute -bottom-10 -right-10 w-full h-full border-2 border-secondary/20 rounded-[4rem] md:rounded-[6rem] -z-0 translate-x-4 translate-y-4 md:translate-x-10 md:translate-y-10" />
+                        </div>
+                    </div>
                 </div>
-                {/* Subtle pulse circles */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/5 rounded-full animate-pulse" />
+            </section>
+
+            {/* Quote / Conclusion */}
+            <section className="py-24 md:py-40 bg-[#5c4033] text-[#f7efd7] relative overflow-hidden">
+                <div className="container mx-auto px-6 text-center z-10 relative">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1 }}
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-3xl md:text-6xl font-serif mb-12 max-w-5xl mx-auto leading-[1.2] text-[#f7efd7]">
+                            "Your night, your spotlight. We don't just apply makeup; we craft your most confident, radiant self."
+                        </h2>
+                        <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
+                            <Link
+                                to="/#contact"
+                                className="group relative inline-flex items-center justify-center overflow-hidden px-12 py-5 bg-secondary text-dark rounded-full text-[10px] md:text-xs font-black tracking-widest transition-all duration-300 uppercase"
+                            >
+                                <span className="relative z-10">BOOK YOUR HERITAGE LOOK</span>
+                            </Link>
+                            <Link
+                                to="/#portfolio"
+                                className="px-12 py-5 border border-white/20 hover:border-white text-white rounded-full text-[10px] md:text-xs font-black tracking-widest transition-all duration-300 uppercase"
+                            >
+                                VIEW FULL PORTFOLIO
+                            </Link>
+                        </div>
+                    </motion.div>
+                </div>
+                {/* Decorative Elements */}
+                <div className="absolute bottom-[-10%] left-[-5%] w-[40%] aspect-square bg-[#f7efd7]/5 rounded-full blur-[100px]" />
+                <div className="absolute top-[-10%] right-[-5%] w-[40%] aspect-square bg-secondary/5 rounded-full blur-[100px]" />
             </section>
         </div>
     );
 };
 
 export default EveningGlam;
+

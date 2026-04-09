@@ -1,89 +1,108 @@
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import FooterCanvas from './FooterCanvas';
+import { motion } from 'framer-motion';
 
 const Footer = () => {
-    const ref = useRef(null);
-    const inView = useInView(ref, { once: false, amount: 0.1 });
+    const socialLinks = [
+        { name: "INSTAGRAM", url: "https://instagram.com/anishamakeover0.1" },
+        { name: "WHATSAPP", url: "https://wa.me/918954386375" },
+        { name: "YOUTUBE", url: "#" }
+    ];
+
+    const navItems = ["Home", "About", "Services", "Portfolio", "Contact"];
 
     return (
-        <footer ref={ref} className="bg-[#0a0a0a] pt-32 pb-12 text-white relative overflow-hidden">
-            {/* 3D Background Effect - Only render if visible */}
-            {inView && <FooterCanvas />}
-
+        <footer className="pt-48 pb-12 relative overflow-hidden">
             <div className="container mx-auto px-6 relative z-10">
-                <div className="grid lg:grid-cols-12 gap-16 md:gap-24">
-                    <div className="lg:col-span-5">
-                        <motion.div 
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-4xl md:text-6xl font-serif font-black tracking-tighter mb-10 leading-none"
-                        >
-                            ANISHA <br /> <span className="text-accent underline decoration-white/10">MAKEOVER</span>
-                        </motion.div>
-                        <p className="text-white/40 text-lg md:text-xl leading-relaxed max-w-md mb-12 font-sans tracking-wide">
-                            Led by Nisha Saini. Crafting beauty that doesn't just look luxury, but feels revolutionary.
-                        </p>
-                        <div className="space-y-4 mb-12">
-                            <h4 className="text-[10px] font-black text-accent tracking-[0.3em] uppercase opacity-60">LOCATION</h4>
-                            <p className="text-white/60 font-sans leading-relaxed flex items-center gap-3">
-                                <span className="w-1.5 h-1.5 bg-accent rounded-full shrink-0" />
-                                Basement below Ravi Kirana Store, Badli Tanda
+                <div className="grid lg:grid-cols-12 gap-20 md:gap-32">
+                    
+                    {/* Brand Empire Side */}
+                    <div className="lg:col-span-12 xl:col-span-6 flex flex-col justify-between">
+                        <div>
+                            <motion.div 
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="flex flex-col mb-16"
+                            >
+                                <span className="text-5xl md:text-[8rem] font-serif font-black text-white leading-none tracking-tighter">
+                                    ANISHA
+                                </span>
+                                <span className="text-sm md:text-xl font-sans font-black tracking-[0.8em] text-secondary leading-none mt-4 uppercase">
+                                    Makeover
+                                </span>
+                            </motion.div>
+                            <p className="text-white/30 text-lg md:text-2xl font-sans font-light italic max-w-xl leading-relaxed">
+                                "Guided by the visionary expertise of Anisha Saini, we redefine the boundaries of traditional beauty through precision and care."
                             </p>
                         </div>
-                        <div className="flex gap-6">
-                            {[
-                                { name: "INSTAGRAM", url: "https://instagram.com/anishamakeover0.1" },
-                                { name: "WHATSAPP", url: "https://wa.me/918954386375" }
-                            ].map((social, index) => (
-                                <motion.a 
-                                    key={index}
-                                    whileHover={{ y: -5 }}
-                                    href={social.url} 
-                                    target="_blank" 
-                                    className="text-[10px] font-black tracking-[0.2em] text-white/40 hover:text-accent transition-colors duration-300 border-b border-white/10 pb-1"
+
+                        <div className="hidden xl:flex gap-16 mt-32">
+                            {socialLinks.map((social) => (
+                                <a 
+                                    key={social.name}
+                                    href={social.url}
+                                    className="text-[10px] font-black tracking-[0.5em] text-white/40 hover:text-white transition-all duration-500 uppercase pb-2 border-b border-transparent hover:border-secondary"
                                 >
                                     {social.name}
-                                </motion.a>
+                                </a>
                             ))}
                         </div>
                     </div>
 
-                    <div className="lg:col-span-2 lg:col-start-7">
-                        <h4 className="text-[10px] font-black text-accent tracking-[0.3em] mb-10 uppercase">NAVIGATION</h4>
-                        <ul className="space-y-6 text-white/50 font-sans text-sm tracking-widest font-black">
-                            {["home", "about", "services", "portfolio"].map((item) => (
-                                <li key={item}>
-                                    <motion.a 
-                                        whileHover={{ x: 10 }}
-                                        href={`#${item}`} 
-                                        className="hover:text-white transition-all underline decoration-transparent hover:decoration-accent"
-                                    >
-                                        {item.toUpperCase()}
-                                    </motion.a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    {/* Navigation Columns */}
+                    <div className="lg:col-span-12 xl:col-span-6 grid md:grid-cols-2 gap-20">
+                        <div className="space-y-16">
+                            <div>
+                                <h4 className="text-secondary font-black text-[10px] tracking-[0.4em] mb-12 uppercase">THE STUDIO</h4>
+                                <ul className="space-y-8">
+                                    {navItems.map((item) => (
+                                        <li key={item}>
+                                            <a 
+                                                href={`#${item.toLowerCase()}`}
+                                                className="text-white/40 hover:text-white font-serif italic text-4xl font-bold transition-all duration-500"
+                                            >
+                                                {item}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
 
-                    <div className="lg:col-span-3 lg:col-start-10">
-                        <h4 className="text-[10px] font-black text-accent tracking-[0.3em] mb-10 uppercase">OUR STUDIO</h4>
-                        <ul className="space-y-6 text-white/50 font-sans text-sm tracking-widest font-black">
-                            {["Professional Makeup", "Bridal Artistry", "School of Beauty", "Luxury Hair Design"].map((item) => (
-                                <li key={item} className="cursor-default border-l border-white/5 pl-6 hover:border-accent transition-colors duration-500">
-                                    {item.toUpperCase()}
-                                </li>
-                            ))}
-                        </ul>
+                        <div className="space-y-16">
+                            <div>
+                                <h4 className="text-secondary font-black text-[10px] tracking-[0.4em] mb-12 uppercase">CONSULTATION</h4>
+                                <div className="space-y-8">
+                                    <div className="group cursor-default">
+                                        <p className="text-white font-serif text-3xl font-bold leading-tight">nishamakeover17@gmail.com</p>
+                                        <div className="h-[1px] w-0 group-hover:w-full bg-secondary transition-all duration-700 mt-4" />
+                                    </div>
+                                    <div className="group cursor-default">
+                                        <p className="text-white font-serif text-3xl font-bold leading-tight">+91 89543 86375</p>
+                                        <div className="h-[1px] w-0 group-hover:w-full bg-secondary transition-all duration-700 mt-4" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Mobile Socials */}
+                            <div className="xl:hidden flex gap-8">
+                                {socialLinks.map((social) => (
+                                    <a key={social.name} href={social.url} className="text-[10px] font-black tracking-widest text-secondary uppercase">
+                                        {social.name}
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div className="mt-40 pt-10 border-t border-white/5 text-center text-white/20 font-sans text-[10px] tracking-[0.5em] flex flex-col md:flex-row justify-between items-center gap-8 uppercase">
-                    <p>© 2026 ANISHA MAKEOVER. ALL RIGHTS RESERVED.</p>
-                    <p className="flex items-center gap-4">
-                        CRAFTED FOR <span className="text-white/40 font-black">LUXURY BEAUTY</span>
+                <div className="mt-40 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10">
+                    <p className="text-[9px] font-black tracking-[0.6em] text-white/10 uppercase">
+                        © 2026 ANISHA MAKEOVER WORLDWIDE.
                     </p>
+                    <div className="flex items-center gap-10">
+                        <span className="text-[9px] font-black tracking-[0.6em] text-white/10 uppercase cursor-pointer hover:text-white transition-all">Privacy Policy</span>
+                        <span className="text-[9px] font-black tracking-[0.6em] text-white/10 uppercase cursor-pointer hover:text-white transition-all">Terms of Artistry</span>
+                    </div>
                 </div>
             </div>
         </footer>

@@ -1,87 +1,61 @@
 import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import PortfolioCanvas from '../components/PortfolioCanvas';
 
 import royalBridalImg from '../assets/royalbridalimg/royal_bridal_main.png';
 import glassSkinImg from '../assets/glassskinimg/glassskin1.jpeg';
 import eveningGlamImg from '../assets/eveningglamimg/evening1.jpeg';
-import softMatteImg from '../assets/soft_matte_main.png';
+import softMatteImg from '../assets/Soft Matte/soft1.heic';
 import traditionalIndianImg from '../assets/traditional_indian_main.png';
 import hdPartyImg from '../assets/hdparty/hd_party_makeup_main.png';
 
 const Portfolio = () => {
-    const ref = useRef(null);
     const navigate = useNavigate();
-    const inView = useInView(ref, { once: false, amount: 0.1 });
+    const targetRef = useRef(null);
+    useScroll({
+        target: targetRef,
+        offset: ["start end", "end start"]
+    });
 
     const works = [
-        {
-            title: "Royal Bridal",
-            type: "LUXURY",
-            img: royalBridalImg,
-            link: "/royal-bridal"
-        },
-        {
-            title: "Glass Skin Look",
-            type: "EDITORIAL",
-            img: glassSkinImg,
-            link: "/glass-skin-look"
-        },
-        {
-            title: "Evening Glam",
-            type: "PARTY",
-            img: eveningGlamImg,
-            link: "/evening-glam"
-        },
-        {
-            title: "Soft Matte",
-            type: "FASHION",
-            img: softMatteImg,
-            link: "/soft-matte"
-        },
-        {
-            title: "Traditional Indian",
-            type: "CULTURAL",
-            img: traditionalIndianImg,
-            link: "/traditional-indian"
-        },
-        {
-            title: "HD Party Makeup",
-            type: "HIGH DEFINITION",
-            img: hdPartyImg,
-            link: "/party-makeup"
-        }
+        { title: "Royal Bridal", type: "LUXURY", img: royalBridalImg, link: "/royal-bridal", class: "lg:col-span-8 aspect-[21/9]" },
+        { title: "Glass Skin", type: "EDITORIAL", img: glassSkinImg, link: "/glass-skin-look", class: "lg:col-span-4 aspect-square" },
+        { title: "Evening Glam", type: "PARTY", img: eveningGlamImg, link: "/evening-glam", class: "lg:col-span-4 aspect-square" },
+        { title: "Soft Matte", type: "FASHION", img: softMatteImg, link: "/soft-matte", class: "lg:col-span-8 aspect-[21/9]" },
+        { title: "Indian Grace", type: "CULTURAL", img: traditionalIndianImg, link: "/traditional-indian", class: "lg:col-span-6 aspect-square" },
+        { title: "HD Party", type: "PRECISION", img: hdPartyImg, link: "/party-makeup", class: "lg:col-span-6 aspect-square" }
     ];
 
-    const handleCardClick = (link) => {
-        if (link) navigate(link);
+    const cardVariants = {
+        initial: { opacity: 0, y: 50 },
+        animate: { opacity: 1, y: 0 },
+        hover: { scale: 1.05 },
+        active: { scale: 1.02 }
     };
 
     return (
-        <section ref={ref} id="portfolio" className="py-20 md:py-32 bg-white relative overflow-hidden">
-            {/* 3D Background Effect - Only render if visible */}
-            {inView && <PortfolioCanvas />}
+        <section id="portfolio" className="py-24 md:py-48 relative overflow-hidden">
+            <div className="container mx-auto px-6 relative z-10">
 
-            <div className="container mx-auto px-6 relative z-10 mb-16 md:mb-24">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-                    <div className="max-w-2xl">
+                {/* Asymmetrical Header */}
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12 mb-32 md:mb-48">
+                    <div className="max-w-4xl">
                         <motion.span
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="text-accent font-sans font-bold tracking-[0.3em] text-[10px] md:text-sm mb-4 block uppercase leading-none"
+                            className="text-secondary font-sans font-black tracking-[0.8em] text-[10px] md:text-sm mb-8 block uppercase leading-none"
                         >
                             THE MASTERPIECES
                         </motion.span>
                         <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.2 }}
-                            className="text-4xl md:text-7xl font-serif font-black text-dark leading-[1.1]"
+                            className="text-4xl md:text-5xl lg:text-6xl font-serif font-black text-white leading-[1.1] tracking-tighter"
                         >
-                            Where Artistry <br className="hidden md:block" /> Meets Soul
+                            Visionary <br /> <span className="text-secondary italic">Artistry</span>
                         </motion.h2>
                     </div>
                     <motion.div
@@ -89,85 +63,68 @@ const Portfolio = () => {
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.4 }}
-                        className="pb-2"
+                        className="md:pb-12"
                     >
-                        <p className="text-dark/50 font-sans max-w-[280px] leading-relaxed text-sm md:text-base border-l-2 border-accent pl-6">
-                            A curated collection of transformations that define our commitment to elegance and natural beauty.
+                        <p className="text-white/30 text-[clamp(1rem,2vw,1.5rem)] font-sans max-w-[400px] leading-relaxed italic border-l-[3px] border-secondary/20 pl-10">
+                            "Transforming perception through textures and tones. Explore our curated portfolio."
                         </p>
                     </motion.div>
                 </div>
-            </div>
 
-            <div className="px-4 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                {works.map((work, index) => (
-                    <motion.div
-                        key={index}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                        viewport={{ once: true }}
-                        onClick={() => handleCardClick(work.link)}
-                        className={`
-                            relative group overflow-hidden rounded-[2rem] md:rounded-[2.5rem] bg-secondary/20 cursor-pointer
-                            ${index % 2 !== 0 ? "lg:mt-12" : ""}
-                        `}
-                    >
-                            <motion.div className="aspect-[4/5] md:aspect-[4/6] xl:aspect-[3/4] overflow-hidden rounded-[2rem] md:rounded-[2.5rem] relative group">
-                                <motion.img
-                                    whileHover={{ scale: window.innerWidth > 1024 ? 1.1 : 1 }}
-                                    transition={{ duration: 1, ease: "circOut" }}
-                                    src={work.img}
-                                    alt={work.title}
-                                    className="w-full h-full object-cover rounded-[2rem] md:rounded-[2.5rem] pointer-events-none"
-                                />
+                {/* Grid Layout - Bento/Magazine Style */}
+                <div ref={targetRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
+                    {works.map((work, index) => (
+                        <motion.div
+                            key={index}
+                            variants={cardVariants}
+                            initial="initial"
+                            whileInView="animate"
+                            whileHover="hover"
+                            whileTap="active"
+                            transition={{ duration: 1, delay: index * 0.1 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            onClick={() => navigate(work.link)}
+                            className={`
+                                relative group overflow-hidden rounded-[4rem] bg-white/5 backdrop-blur-md border border-white/5 cursor-pointer shadow-2xl
+                                ${work.class}
+                            `}
+                        >
+                            <img
+                                src={work.img}
+                                alt={work.title}
+                                className="w-full h-full object-cover grayscale transition-all duration-[1s] ease-out md:group-hover:grayscale-0 md:group-hover:scale-110"
+                                style={{
+                                    // On mobile, force grayscale off so it works on scroll
+                                    filter: 'grayscale(var(--mobile-grayscale, 0))'
+                                }}
+                            />
 
-                                {/* Subtle Permanent Gradient for Text Visibility */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent pointer-events-none" />
+                            {/* Cinematic Overlays */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 md:opacity-60 md:group-hover:opacity-100 transition-opacity duration-700" />
 
-                                {/* Static Info Layer (Always Visible on Mobile, Hidden on Desktop Hover) */}
-                                <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10 pointer-events-none transition-opacity duration-300 lg:group-hover:opacity-0">
-                                    <span className="text-accent text-[10px] md:text-xs font-black tracking-[0.4em] mb-3 uppercase leading-none opacity-90">
-                                        {work.type}
-                                    </span>
-                                    <h3 className="text-2xl md:text-4xl font-serif text-white font-black leading-tight tracking-tighter">
-                                        {work.title}
-                                    </h3>
-                                </div>
+                            {/* Info */}
+                            <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end text-white translate-y-0 md:translate-y-8 md:group-hover:translate-y-0 transition-transform duration-700">
+                                <span className="text-secondary font-black tracking-[0.4em] text-[10px] uppercase mb-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-1000 delay-300">
+                                    {work.type}
+                                </span>
+                                <h3 className="text-3xl md:text-6xl font-serif font-black leading-tight mb-4 md:mb-8">
+                                    {work.title}
+                                </h3>
+                                <div className="h-[1px] w-full md:w-0 md:group-hover:w-full bg-secondary transition-all duration-1000 origin-left" />
+                            </div>
 
-                                {/* Hover Reveal Layer (Desktop Only) */}
-                                <div className="absolute inset-0 bg-dark/40 opacity-0 lg:group-hover:opacity-100 transition-all duration-500 backdrop-blur-[2px] hidden lg:flex flex-col justify-end p-8 md:p-12">
-                                    <span className="text-white/60 text-[10px] md:text-xs font-black tracking-[0.4em] mb-3 uppercase leading-none">
-                                        {work.type}
-                                    </span>
-                                    <h3 className="text-3xl md:text-5xl font-serif text-white font-black mb-8 leading-tight tracking-tighter">
-                                        {work.title}
-                                    </h3>
-
-                                    <div className="flex items-center gap-4 group/btn">
-                                        <button
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                if (work.link) navigate(work.link);
-                                            }}
-                                            className="px-10 py-4 bg-white text-dark rounded-full text-[10px] font-black tracking-[0.2em] hover:bg-accent hover:text-white transition-all duration-300 uppercase shadow-xl"
-                                        >
-                                            EXPLORE
-                                        </button>
-                                        <div className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center bg-white/5 backdrop-blur-sm transition-all duration-300 group-hover/btn:bg-white group-hover/btn:border-white">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white group-hover/btn:text-dark transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 7l-10 10M17 7H7M17 7v10" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                    </motion.div>
-                ))}
+                            {/* Corner Indicator */}
+                            <div className="absolute top-6 right-6 md:top-10 md:right-10 w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/20 flex items-center justify-center bg-white/5 backdrop-blur-xl md:group-hover:bg-secondary md:group-hover:text-dark transition-all duration-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
             </div>
         </section>
     );
 };
 
 export default Portfolio;
-
-
