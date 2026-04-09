@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     const socialLinks = [
@@ -10,7 +11,10 @@ const Footer = () => {
     const navItems = ["Home", "About", "Services", "Portfolio", "Contact"];
 
     return (
-        <footer className="pt-48 pb-12 relative overflow-hidden">
+        <footer className="pt-48 pb-12 relative overflow-hidden bg-[#050505]">
+            {/* Background Glow */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-secondary/5 blur-[150px] rounded-full pointer-events-none" />
+            
             <div className="container mx-auto px-6 relative z-10">
                 <div className="grid lg:grid-cols-12 gap-20 md:gap-32">
                     
@@ -40,7 +44,9 @@ const Footer = () => {
                                 <a 
                                     key={social.name}
                                     href={social.url}
-                                    className="text-[10px] font-black tracking-[0.5em] text-white/40 hover:text-white transition-all duration-500 uppercase pb-2 border-b border-transparent hover:border-secondary"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-[11px] font-bold tracking-[0.4em] text-white/50 hover:text-secondary transition-all duration-500 uppercase pb-2 border-b border-white/5 hover:border-secondary"
                                 >
                                     {social.name}
                                 </a>
@@ -52,16 +58,16 @@ const Footer = () => {
                     <div className="lg:col-span-12 xl:col-span-6 grid md:grid-cols-2 gap-20">
                         <div className="space-y-16">
                             <div>
-                                <h4 className="text-secondary font-black text-[10px] tracking-[0.4em] mb-12 uppercase">THE STUDIO</h4>
+                                <h4 className="text-secondary font-black text-[12px] tracking-[0.4em] mb-12 uppercase">THE STUDIO</h4>
                                 <ul className="space-y-8">
                                     {navItems.map((item) => (
                                         <li key={item}>
-                                            <a 
-                                                href={`#${item.toLowerCase()}`}
-                                                className="text-white/40 hover:text-white font-serif italic text-4xl font-bold transition-all duration-500"
+                                            <Link 
+                                                to={`/#${item.toLowerCase()}`}
+                                                className="text-white/60 hover:text-white font-serif italic text-4xl font-bold transition-all duration-500 block"
                                             >
                                                 {item}
-                                            </a>
+                                            </Link>
                                         </li>
                                     ))}
                                 </ul>
@@ -96,12 +102,13 @@ const Footer = () => {
                 </div>
 
                 <div className="mt-40 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10">
-                    <p className="text-[9px] font-black tracking-[0.6em] text-white/10 uppercase">
-                        © 2026 ANISHA MAKEOVER WORLDWIDE.
+                    <p className="text-[11px] font-medium tracking-[0.4em] text-white/40 uppercase">
+                        © 2026 ANISHA MAKEOVER WORLDWIDE. ALL RIGHTS RESERVED.
                     </p>
                     <div className="flex items-center gap-10">
-                        <span className="text-[9px] font-black tracking-[0.6em] text-white/10 uppercase cursor-pointer hover:text-white transition-all">Privacy Policy</span>
-                        <span className="text-[9px] font-black tracking-[0.6em] text-white/10 uppercase cursor-pointer hover:text-white transition-all">Terms of Artistry</span>
+                        <span className="text-[11px] font-medium tracking-[0.4em] text-white/40 uppercase cursor-pointer hover:text-secondary transition-all duration-300">Privacy Policy</span>
+                        <div className="w-1 h-1 rounded-full bg-white/20" />
+                        <span className="text-[11px] font-medium tracking-[0.4em] text-white/40 uppercase cursor-pointer hover:text-secondary transition-all duration-300">Terms of Artistry</span>
                     </div>
                 </div>
             </div>

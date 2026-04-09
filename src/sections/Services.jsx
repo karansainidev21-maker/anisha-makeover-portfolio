@@ -1,18 +1,25 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import bridalImg from '../assets/bridal_service.png';
 import academyImg from '../assets/academy_service.png';
 
 const Services = () => {
+    const navigate = useNavigate();
     const services = [
-        { title: "Bridal Artistry", price: "₹7,000+", desc: "Premium transformations tailored for your most legacy moments.", img: bridalImg },
-        { title: "The Academy", price: "Enroll Now", desc: "Master the craft with Anisha Saini's professional certification.", img: academyImg },
+        { title: "Bridal Artistry", price: "₹8,000+", desc: "Premium transformations tailored for your most legacy moments.", img: bridalImg, link: "/royal-bridal" },
+        { title: "The Academy", price: "Enroll Now", desc: "Master the craft with Anisha Saini's professional certification.", img: academyImg, link: "/academy" },
         { title: "Hair Couture", price: "Customized", desc: "Chemical treatments that blend protection with modern luxury.", img: "https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=2000" }
     ];
 
-    const handleScrollToContact = () => {
-        const contactSection = document.getElementById('contact');
-        if (contactSection) {
-            contactSection.scrollIntoView({ behavior: 'smooth' });
+    const handleAction = (link) => {
+        if (link) {
+            navigate(link);
+            window.scrollTo(0, 0);
+        } else {
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
         }
     };
 
@@ -51,7 +58,7 @@ const Services = () => {
                             whileTap={{ scale: 0.98 }}
                             transition={{ duration: 0.8, delay: index * 0.1 }}
                             viewport={{ once: true, amount: 0.2 }}
-                            onClick={handleScrollToContact}
+                            onClick={() => handleAction(service.link)}
                             className="group relative h-[300px] md:h-[350px] overflow-hidden rounded-[2rem] md:rounded-[3rem] border border-white/5 cursor-pointer"
                         >
                             <img
@@ -60,7 +67,7 @@ const Services = () => {
                                 className="w-full h-full object-cover transition-transform duration-[2s] md:group-hover:scale-105"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent group-hover:bg-black/20 transition-all duration-700" />
-                            
+
                             <div className="absolute inset-x-0 bottom-0 p-8 md:p-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
                                 <div className="max-w-xl">
                                     <h3 className="text-3xl md:text-5xl font-serif font-black text-white mb-2 md:group-hover:text-secondary transition-colors duration-500 italic">
@@ -70,7 +77,7 @@ const Services = () => {
                                         {service.desc}
                                     </p>
                                 </div>
-                                
+
                                 <div className="flex flex-col items-start md:items-end gap-4">
                                     <span className="text-secondary/80 font-black text-lg md:text-2xl tracking-wider">{service.price}</span>
                                     <button className="px-8 py-3 bg-secondary text-dark md:bg-transparent md:border md:border-white/10 md:text-white/40 md:group-hover:border-secondary md:group-hover:text-dark md:group-hover:bg-secondary rounded-full text-[8px] font-black tracking-widest transition-all duration-500 uppercase active:scale-95">
@@ -82,7 +89,7 @@ const Services = () => {
                     ))}
                 </div>
             </div>
-            
+
             {/* Background Texture - Restored to AM for Consistency */}
             <div className="absolute top-1/2 -right-[10%] -translate-y-1/2 text-white/[0.01] font-serif font-black text-[30vw] leading-none pointer-events-none select-none italic rotate-12">
                 AM

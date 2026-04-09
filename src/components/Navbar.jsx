@@ -68,22 +68,44 @@ const Navbar = () => {
 
                     {/* Desktop Menu */}
                     <nav className="hidden lg:flex gap-14 items-center">
-                        {navLinks.map((link) => (
-                            <Link
+                        {navLinks.map((link, idx) => (
+                            <motion.div
                                 key={link.name}
-                                to={link.href}
-                                className="relative text-[10px] font-black tracking-[0.4em] text-white/50 hover:text-white transition-all duration-300 group py-2"
+                                initial={{ opacity: 0, y: -20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ 
+                                    duration: 0.8, 
+                                    delay: 0.5 + idx * 0.1, 
+                                    ease: [0.22, 1, 0.36, 1] 
+                                }}
                             >
-                                {link.name}
-                                <span className="absolute bottom-0 left-0 w-0 h-[1.px] bg-secondary group-hover:w-full transition-all duration-700" />
-                            </Link>
+                                <Link
+                                    to={link.href}
+                                    className="relative text-[10px] font-black tracking-[0.4em] text-white/50 hover:text-white transition-all duration-300 group py-2 block"
+                                >
+                                    <motion.span
+                                        className="inline-block"
+                                        whileHover={{ y: -3, transition: { duration: 0.4, ease: "easeOut" } }}
+                                    >
+                                        {link.name}
+                                    </motion.span>
+                                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary md:group-hover:w-full transition-all duration-500 ease-out" />
+                                </Link>
+                            </motion.div>
                         ))}
-                        <Link
-                            to="/#contact"
-                            className="px-10 py-4 bg-secondary text-dark rounded-full text-[10px] font-black tracking-widest hover:bg-white hover:shadow-[0_0_30px_rgba(191,155,106,0.5)] transition-all duration-500 uppercase"
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.8, delay: 1, ease: [0.22, 1, 0.36, 1] }}
                         >
-                            RESERVE
-                        </Link>
+                            <Link
+                                to="/#contact"
+                                className="px-10 py-4 bg-secondary text-dark rounded-full text-[10px] font-black tracking-widest hover:bg-white hover:shadow-[0_0_20px_rgba(191,155,106,0.3)] transition-all duration-500 uppercase overflow-hidden relative group inline-block"
+                            >
+                                <span className="relative z-10 transition-colors duration-500">RESERVE</span>
+                                <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+                            </Link>
+                        </motion.div>
                     </nav>
 
                     {/* Mobile Menu Toggle */}

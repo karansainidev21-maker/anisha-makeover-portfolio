@@ -6,8 +6,7 @@ import royalBridalImg from '../assets/royalbridalimg/royal_bridal_main.png';
 import glassSkinImg from '../assets/glassskinimg/glassskin1.jpeg';
 import eveningGlamImg from '../assets/eveningglamimg/evening1.jpeg';
 import softMatteImg from '../assets/Soft Matte/soft1.heic';
-import traditionalIndianImg from '../assets/traditional_indian_main.png';
-import hdPartyImg from '../assets/hdparty/hd_party_makeup_main.png';
+import hdPartyImg from '../assets/hdparty/hdparty1.jpeg';
 
 const Portfolio = () => {
     const navigate = useNavigate();
@@ -18,12 +17,11 @@ const Portfolio = () => {
     });
 
     const works = [
-        { title: "Royal Bridal", type: "LUXURY", img: royalBridalImg, link: "/royal-bridal", class: "lg:col-span-8 aspect-[21/9]" },
-        { title: "Glass Skin", type: "EDITORIAL", img: glassSkinImg, link: "/glass-skin-look", class: "lg:col-span-4 aspect-square" },
-        { title: "Evening Glam", type: "PARTY", img: eveningGlamImg, link: "/evening-glam", class: "lg:col-span-4 aspect-square" },
-        { title: "Soft Matte", type: "FASHION", img: softMatteImg, link: "/soft-matte", class: "lg:col-span-8 aspect-[21/9]" },
-        { title: "Indian Grace", type: "CULTURAL", img: traditionalIndianImg, link: "/traditional-indian", class: "lg:col-span-6 aspect-square" },
-        { title: "HD Party", type: "PRECISION", img: hdPartyImg, link: "/party-makeup", class: "lg:col-span-6 aspect-square" }
+        { title: "Royal Bridal", type: "LUXURY", img: royalBridalImg, link: "/royal-bridal", class: "lg:col-span-8 lg:aspect-[21/9]" },
+        { title: "Glass Skin", type: "EDITORIAL", img: glassSkinImg, link: "/glass-skin-look", class: "lg:col-span-4 lg:aspect-square" },
+        { title: "Evening Glam", type: "PARTY", img: eveningGlamImg, link: "/evening-glam", class: "lg:col-span-4 lg:aspect-square" },
+        { title: "Soft Matte", type: "FASHION", img: softMatteImg, link: "/soft-matte", class: "lg:col-span-8 lg:aspect-[21/9]" },
+        { title: "HD Party", type: "PRECISION", img: hdPartyImg, link: "/party-makeup", class: "lg:col-span-12 lg:aspect-[21/9]" }
     ];
 
     const cardVariants = {
@@ -85,7 +83,7 @@ const Portfolio = () => {
                             viewport={{ once: true, amount: 0.2 }}
                             onClick={() => navigate(work.link)}
                             className={`
-                                relative group overflow-hidden rounded-[4rem] bg-white/5 backdrop-blur-md border border-white/5 cursor-pointer shadow-2xl
+                                relative group overflow-hidden rounded-[2.5rem] md:rounded-[4rem] bg-white/5 backdrop-blur-md border border-white/5 cursor-pointer shadow-2xl h-[350px] md:h-auto
                                 ${work.class}
                             `}
                         >
@@ -107,7 +105,7 @@ const Portfolio = () => {
                                 <span className="text-secondary font-black tracking-[0.4em] text-[10px] uppercase mb-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-1000 delay-300">
                                     {work.type}
                                 </span>
-                                <h3 className="text-3xl md:text-6xl font-serif font-black leading-tight mb-4 md:mb-8">
+                                <h3 className="text-3xl md:text-6xl font-serif font-black leading-tight mb-4 md:mb-8 italic">
                                     {work.title}
                                 </h3>
                                 <div className="h-[1px] w-full md:w-0 md:group-hover:w-full bg-secondary transition-all duration-1000 origin-left" />
