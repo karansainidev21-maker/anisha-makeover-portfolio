@@ -78,7 +78,7 @@ const Preloader = () => {
 
                     {/* Decorative Elements */}
                     <div className="absolute top-10 left-10 text-[10px] text-dark/10 font-black tracking-[0.5em] rotate-90 origin-left">
-                        EST. 2024
+                        EST. 2022
                     </div>
                     <div className="absolute bottom-10 right-10 text-[10px] text-dark/10 font-black tracking-[0.5em]">
                         PREMIUM BRIDAL SERVICE

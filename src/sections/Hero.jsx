@@ -55,7 +55,7 @@ const Hero = () => {
                             <div className="flex items-center justify-center xl:justify-start gap-4 mb-8 md:mb-10">
                                 <span className="h-[1px] w-10 bg-secondary/30"></span>
                                 <span className="text-secondary/60 font-sans font-black tracking-[0.4em] text-[10px] uppercase">
-                                    EST. 2024 • ANISHA MAKEOVER
+                                    EST. 2022 • ANISHA MAKEOVER
                                 </span>
                             </div>
                             

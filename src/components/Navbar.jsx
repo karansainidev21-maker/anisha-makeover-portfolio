@@ -215,7 +215,7 @@ const Navbar = () => {
                             
                             <div className="mt-12 flex justify-between items-center text-white/20 text-[9px] font-black tracking-[0.5em] uppercase">
                                 <span>© 2026 ANISHA MAKEOVER</span>
-                                <span>EST. 2024</span>
+                                <span>EST. 2022</span>
                             </div>
                         </motion.div>
                     </motion.div>
