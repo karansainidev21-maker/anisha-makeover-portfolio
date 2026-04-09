@@ -4,7 +4,7 @@ const Footer = () => {
     const socialLinks = [
         { name: "INSTAGRAM", url: "https://instagram.com/anishamakeover0.1" },
         { name: "WHATSAPP", url: "https://wa.me/918954386375" },
-        { name: "YOUTUBE", url: "#" }
+        { name: "YOUTUBE", url: "https://www.youtube.com/@nishamakeover.01" }
     ];
 
     const navItems = ["Home", "About", "Services", "Portfolio", "Contact"];

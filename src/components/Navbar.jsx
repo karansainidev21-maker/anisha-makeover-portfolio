@@ -176,6 +176,7 @@ const Navbar = () => {
                                     <div className="flex flex-col gap-2">
                                         <a href="https://instagram.com/anishamakeover0.1" target="_blank" className="text-white/60 hover:text-white transition-colors text-sm font-bold tracking-widest uppercase">Instagram</a>
                                         <a href="https://wa.me/918954386375" target="_blank" className="text-white/60 hover:text-white transition-colors text-sm font-bold tracking-widest uppercase">WhatsApp</a>
+                                        <a href="https://www.youtube.com/@nishamakeover.01" target="_blank" className="text-white/60 hover:text-white transition-colors text-sm font-bold tracking-widest uppercase">YouTube</a>
                                     </div>
                                 </div>
                                 <div>
